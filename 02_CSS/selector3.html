@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상 클래스 선택자 & 가상 요소 선택자</title>
+    <style>
+        .div1{
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        /* 1. 가상 클래스 선택자 */
+        /* 1-1 hover, active, focus, checked */
+        /* 
+        - E:active {} E 요소에 마우스 클릭 또는 키보드 엔터가 눌리는 "동안"
+        - E:hover {} E 요소에 마우스가 올라가 있는 동안
+        - E:focus {} E 요소에 포커스가 머물러 있는 동안 (input, textarea)
+        - E:checked {} E 요소가 체크 되었을 때 (radio, checkbox)
+        */
+        .div1:hover{
+            background-color: blue;
+            height: 150px;
+        }
+
+        .div1:active{
+            background-color: chocolate;
+            width: 150px;
+        }
+
+        input:focus{
+            background-color: blueviolet;
+            color: aqua;
+            outline-color: aqua;
+        }
+
+        a{
+            font-size: 25px;
+            font-weight: bold;
+            color: green;
+        }
+
+        a:hover{
+            background-color: coral;
+        }
+
+        a:active{
+            background-color: black;
+            color: yellow;
+        }
+
+        a:visited{
+            color: red;
+        }
+
+        /* 1-2 순서와 관련된 가상클래스 선택자 */
+        /* 
+        - E:first-child E요소가 첫번째라면 선택
+        - E:last-child E요소가 마지막이라면 선택
+        - E:nth-child(n) E요소가 n번째라면 선택
+            - 괄호안에는 숫자, n과 관련된 수식, odd/even 키워드
+        - E:not(XYZ) E요소 중에 XYZ가 아닌 요소 선택
+        */
+
+        .zoo > * {
+            background-color: green;
+            color: white;
+            font-size: 20px;
+        }
+
+        .zoo > li:last-child {
+            background-color: black;
+        }
+
+        .zoo > *:first-child {
+            background-color: pink;
+        }
+
+        .zoo >li:nth-child(even){
+            background-color: yellowgreen;
+        }
+
+        .zoo > *:not(div){
+            background-color: aqua;
+        }
+
+        /* 가상요소 선택자 */
+        .div2 {
+            background-color: pink;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        /* .div2::after{
+            content: ' after';
+            color: white;
+        } */
+
+        .div2:hover::after{
+            content: ' after';
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" />
+
+    <br />
+    <a href="https://www.naver.com">naver</a>
+    <a href="https://www.google.com">google</a>
+    <div class="div1">
+        <span>div1</span>
+    </div>
+    <hr />
+    <ul class="zoo">
+        <h1>동물원입니다.</h1>
+        <div>원숭이</div>
+        <li>lion</li>
+        <li>rabbit</li>
+        <li>tiger</li>
+        <li>elephant</li>
+        <li>puppy</li>
+        <div>코알라</div>
+        <li>panda</li>
+    </ul>
+
+    <hr />
+    <div class="div2">가상 요소 선택자</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</html>

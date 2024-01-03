@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+
+@font-face {
+    font-family: 'DAEAM_LEE_TAE_JOON';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/DAEAM_LEE_TAE_JOON.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-link{
+    font-family: 'Diphylleia', serif;
+}
+
+.font-import{
+    font-family: 'Single Day', cursive;
+}
+
+.noonnu{
+    font-family: 'DAEAM_LEE_TAE_JOON', serif;
+}
+
+.sentences{
+    font-weight: 700;
+    font-size: 16px;
+    /* font-size: 1rem; */
+    /* font-size: 1em; */
+
+    /* text align */
+    text-align: left;
+    text-align: right;
+    text-align: center;
+
+    /* text-decoration */
+    text-decoration: line-through;
+    text-decoration: underline;
+    text-decoration: overline;
+    text-decoration: none;
+
+    /* line-height */
+    line-height: 32px;
+
+}
+
+a{
+    text-decoration: none;
+    /* color: black; */
+    /* 색깔 지정 방법 */
+    /* 
+    1. 색깔 이름 작성: red, black, pink, ..
+    2. rgb(-, -, -) -에는 0~255까지의 숫자가 올 수 있음
+    3. #------ : #c358ab
+     16진수로 이루어진 rgb 값 (0 ~ 9 와 a,b,c,d,e,f 로 이루어진 수)
+    */
+    color: #f33333;
+    
+    /* 투명도 조절하는 rgba 함수 */
+    color: rgba(0,0,0,0.5);
+
+}

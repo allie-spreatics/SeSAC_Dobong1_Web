@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자4 - 속성선택자</title>
+    <style>
+        [disabled]{
+            background-color: pink;
+        }
+
+        [placeholder] {
+            background-color: yellow;
+        }
+
+        [type="password"]{
+            font-size: 50px;
+        }
+
+        [class="square"]{
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="text1">
+    <input type="text" placeholder="text2">
+    <input type="text" placeholder="text3" disabled>
+    <input type="password">
+
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+</body>
+</html>

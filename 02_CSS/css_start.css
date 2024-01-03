@@ -1,0 +1,5 @@
+@import url('./import.css');
+li{
+    color: red;
+    font-size: 30px;
+}

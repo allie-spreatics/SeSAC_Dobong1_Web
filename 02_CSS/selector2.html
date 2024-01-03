@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자2 - 복합선택자</title>
+    <style>
+        div {
+            height: 70px;
+            background-color: gray;
+        }
+
+        section {
+            border: 1px solid blue;
+        }
+
+        article {
+            height: 100px;
+            border: 1px solid salmon;
+        }
+
+        /* 직계 자식 선택자 */
+        div>h2 {
+            color: white;
+            text-align: center;
+            line-height: 70px;
+        }
+
+        .first>h2{
+            color: aliceblue;
+            background-color: midnightblue;
+        }
+
+        .second > h2{
+            color: midnightblue;
+            background-color: aliceblue;
+        }
+
+        main > .first > article > ul > li {
+            font-size: 10px;
+        }
+
+        /* 후손선택자 */
+        .second li {
+            font-size: 20px;
+            background-color: brown;
+            color: white;
+        }
+
+        /* 인접형제 선택자 */
+        #fairy + li{
+            background-color: cadetblue;
+            color: antiquewhite;
+        }
+
+        #fairy ~ li {
+            background-color: green;
+            color: lime;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div>
+            <h2>선택자 배우기</h2>
+        </div>
+
+        <section class="first">
+            <h2>첫번째 section</h2>
+            <article>
+                <span>전래동화</span>
+            </article>
+            <article>
+                <ul>
+                    <li>토끼와 거북이</li>
+                    <li id="fairy">선녀와 나무꾼</li>
+                    <p>p tag</p>
+                    <li>햇님 달님</li>
+                    <li>콩쥐 팥쥐</li>
+                </ul>
+            </article>
+        </section>
+        <section class="second">
+            <h2>두번째 section</h2>
+            <article>
+                <ul>
+                    <li>신데렐라</li>
+                    <li>백설공주</li>
+                </ul>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
