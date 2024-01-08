@@ -56,3 +56,39 @@
     backface-visibility: visible;
     /* backface-visibility: hidden; */
 }
+
+.box{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-color: black;
+}
+
+.box1:hover{
+    background-color: pink;
+    height: 120px;
+    width: 120px;
+
+    transition-duration: 1s;
+    /* transition-delay: 1s; */
+    /* transition-property: height; */
+    transition-timing-function: ease;
+}
+
+.box2:hover{
+    /* transition 단축속성 */
+    /* transition: property duration(필수) function delay */
+    background-color: aqua;
+    transform: translateX(100px) scaleX(2);
+
+    /* transition: transform 0.5s linear 2s; */
+    /* transition:  2s 0.5s; */
+    transition: 2s;
+}
+
+.box3:hover{
+    transition: .6s;
+    /* opacity: 0; */
+    /* visibility: hidden; */
+    display: none;
+}
