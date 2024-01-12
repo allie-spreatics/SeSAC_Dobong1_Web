@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM class</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        #green {
+            background-color: green;
+        }
+        #red {
+            background-color: red;
+        }
+        .d-none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="green">1</div>
+        <div class="box" id="red">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+    <button onclick="addClass()">addClass</button>
+    <button onclick="removeClass()">removeClass</button>
+    <button onclick="containsClass()">containsClass</button>
+    <button onclick="toggleClass()">toggleClass</button>
+    <hr>
+    <input type="text" id="userName">
+
+    <script>
+        // 클래스 관련 메소드
+
+        let greenBox = document.getElementById('green');
+
+        // 클래스 추가
+        function addClass() {
+            greenBox.classList.add('box1');
+            console.log(greenBox.classList);
+        }
+
+        // 클래스 삭제
+        function removeClass() {
+            greenBox.classList.remove('box1');
+            console.log(greenBox.classList);
+        }
+
+        // 클래스 유무 확인, true/false 반환
+        function containsClass() {
+            console.log(greenBox.classList.contains('box1'));
+        }
+
+        // 클래스가 있으면 제거, 없으면 추가
+        function toggleClass() {
+            greenBox.classList.toggle('d-none');
+        }
+
+        // 속성 변경 메소드
+        let inputEl = document.getElementById('userName');
+        inputEl.setAttribute('placeholder', 'name');
+        inputEl.placeholder = 'name2';
+
+        // inputEl.style = 'color: red';
+        inputEl.style.color = 'red';
+    </script>
+</body>
+</html>

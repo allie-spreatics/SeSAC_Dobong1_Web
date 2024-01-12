@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TodoList 올바르게 변경하기</title>
+
+    <style>
+        li {
+            margin: 4px 0;
+        }
+
+        .done>span {
+            text-decoration: line-through;
+            font-style: italic;
+            color: #bbb;
+        }
+
+        .todo>span {
+            font-weight: 700;
+            background-color: rgb(255, 233, 111);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Todo List 올바르게 변경하기</h1>
+    <!-- 
+      문제
+      - [ ] 아래 리스트는 오늘의 투두 리스트입니다. 그런데 완료한 일과 해야할 일 표시가 뒤바뀌었습니다. ("점심 먹기"와 "커피 마시기" 두 가지 일만 현재 완료한 상태입니다.)
+      - [ ] 완료한 일은 회색 글씨에 취소선 표시가 되어있고, 해야할 일은 굵은 글씨에 노란 배경이 더해져 있어야 합니다.
+      - [ ] 완료한 일은 done 클래스를 갖고, 해야할 일은 todo 클래스를 갖도록 코드를 변경해주세요.
+      - [ ] [경고] html 코드 변경 없이 js 코드로만 변경해야 합니다. script 태그의 내부 코드를 추가해주세요.
+    -->
+
+    <!-- WARNING: HTML 코드 변경 금지!! -->
+    <hr />
+    <div class="container">
+        <h2>TODO List</h2>
+        <ul>
+            <li class="todo">
+                <span>점심 먹기</span>
+            </li>
+            <li class="todo">
+                <span>커피 마시기</span>
+            </li>
+            <li class="done">
+                <span>과제 완성하기</span>
+            </li>
+            <li class="done">
+                <span>운동하기</span>
+            </li>
+            <li class="done">
+                <span>저녁먹기</span>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // TODO: 문제 조건을 만족하는 js 코드 작성
+        // (참고) done 클래스와 todo 클래스에 대한 스타일시트는 haed > style 태그에 이미 정의되어 있습니다.
+
+        const lis = document.querySelectorAll('li');
+
+        for (let li of lis) {
+            // 있으면 빼고 없으면 추가
+            li.classList.toggle('done');
+            li.classList.toggle('todo');
+        }
+
+    </script>
+</body>
+
+</html>

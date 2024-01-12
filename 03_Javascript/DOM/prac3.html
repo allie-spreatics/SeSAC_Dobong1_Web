@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아이스크림 베스트 9</title>
+
+    <style>
+        p {
+            padding: 10px 20px;
+            background-color: rgb(248, 255, 230);
+            border-radius: 10px;
+        }
+
+        /* CSS */
+        .article-box {
+            display: inline-block;
+            margin: 10px;
+            padding: 30px;
+            border-radius: 20px;
+            background-color: rgb(255, 248, 248);
+            border: 1px solid rgb(250, 226, 231);
+        }
+
+        .img-box {
+            width: 180px;
+            height: 180px;
+            background-color: rgb(250, 226, 231);
+            border-radius: 50%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>HTML 요소 생성/추가하기</h1>
+
+    <!-- 
+      문제
+      - 이달의 맛 BEST 9가지를 카드로 생성하려고 합니다.
+      - 각 카드에서 보여줄 정보는 다음과 같습니다
+            - 아이스크림 이미지
+            - 순위
+            - 맛 이름: icecreams 변수에 배열로 미리 정의해 두었습니다.
+      - [ ] img 태그 생성
+            - [ ] src 속성 값으로 이미지 사진 경로 추가 (image 폴더내 파일명 확인해주세요. icecream1.png가 1위, ... icecream9.png가 9위 입니다. )
+            - [ ] img-box 클래스를 추가해주세요.
+      - [ ] h3 태그 생성
+            - [ ] 태그 내용(content)이 Top1~9가 되도록 설정해주세요.
+            - [ ] text-center 클래스를 추가해 글씨가 가운데 정렬되도록 해주세요.
+      - [ ] div 태그 생성
+            - [ ] 태그 내용(content)이 icecreams 배열에 담긴 맛 이름이 되도록 설정해주세요.
+            - [ ] text-center 클래스를 추가해 글씨가 가운데 정렬되도록 해주세요.
+      - [ ] article 태그를 생성
+            - [ ] article-box 클래스를 추가해주세요.
+            - [ ] article 요소는 위에서 생성한 img, h3, div 요소를 자식으로 갖습니다.
+      - [ ] section 요소는 article 요소를 자식으로 갖습니다.
+    -->
+
+    <!-- WARNING: HTML 코드 변경 금지!! -->
+    <h2 class="text-center">이달의 맛 BEST9</h2>
+    <section class="text-center">
+        <!-- 이 곳에 article 태그가 추가되도록! -->
+    </section>
+
+    <script>
+        // TODO: 문제 조건을 만족하는 js 코드 작성
+        // (참고) article-box, img-box, text-center 클래스에 대한 스타일시트는 haed > style 태그에 이미 정의되어 있습니다.
+
+        const section = document.querySelector('section');
+        const icecreams = [
+            '내가 아인슈페너?!',
+            '엄마는 외계인',
+            '민트 초콜릿 칩',
+            '뉴욕 치즈케이크',
+            '아이스 초당옥수수',
+            '초콜릿 무스',
+            '체리쥬빌레',
+            '뮤! 넌 내거야',
+            '오레오 쿠키 앤 크림',
+        ];
+
+        for (let i = 0; i < icecreams.length; i++) {
+            const img = document.createElement('img');
+            img.setAttribute('src', `./image/icecream${i + 1}.png`);
+            img.classList.add('img-box');
+
+            const topN = document.createElement('h3');
+            topN.textContent = `Top${i + 1}`;
+            topN.classList.add('text-center');
+
+            const name = document.createElement('div');
+            name.textContent = icecreams[i];
+            name.classList.add('text-center');
+
+            const article = document.createElement('article');
+            article.classList.add('article-box');
+            article.append(img);
+            article.append(topN);
+            article.append(name);
+            
+            section.append(article);
+        }
+
+    </script>
+</body>
+
+</html>
