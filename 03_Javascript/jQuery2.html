@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <script>
+        // 요소 추가
+        function appendJS() {
+            // 부모 ul 에 자식 li 를 append
+            // 1. 부모 ul 선택
+            let ul = document.querySelector('ul');
+            // 2. 추가할 자식 li 요소 만들고
+            let li = document.createElement('li');
+            // 3. li 요소에 내용 추가
+            li.innerText = 'red';
+            // 4. ul에 자식 li를 append
+            ul.append(li);
+        }
+
+        function appendJQ() {
+            $('ul').append('<li>jQuery append</li>');
+        }
+
+        // 요소 맨 앞에 추가 (prepend)
+        function prependJS() {
+            // 부모 ul 에 자식 li 를 prepend
+            // 1. 부모 ul 선택
+            let ul = document.querySelector('ul');
+            // 2. 추가할 자식 li 요소 만들고
+            let li = document.createElement('li');
+            // 3. li 요소에 내용 추가
+            li.innerText = 'red';
+            // 4. ul에 자식 li를 append
+            ul.prepend(li);
+        }
+
+        function prependJQ() {
+            $('ul').prepend('<li>jQuery prepend</li>');
+        }
+
+        // 형제 요소 추가
+        function beforeJS() {
+            // 추가할 기준이 되는 요소 선택
+            let green = document.querySelector('.green');
+            // 추가할 요소 생성
+            let li = document.createElement('li');
+            li.innerText = 'before JS';
+            green.before(li);
+        }
+
+        function beforeJQ() {
+            $('.green').before('<li>jQuery before</li>');
+        }
+
+        // after
+        // 위에 코드에서 before -> after
+
+        // 요소 삭제
+        // remove
+        function removeJS() {
+            let li = document.querySelector('#li2');
+            li.remove();
+        }
+
+        function removeJQ() {
+            $('#li2').remove();
+        }
+
+        // empty
+        function emptyJS() {
+            let nums = document.querySelector('.nums');
+            nums.innerHTML = '';
+        }
+
+        function emptyJQ() {
+            $('.nums').empty();
+        }
+
+        // 요소 탐색
+        function findParent() {
+            // parent(): 부모요소 반환
+            console.log($('#li2').parent());
+        }
+
+        function findParents() {
+            // parent(): 부모, 조상 요소 모두 반환
+            console.log($('#li2').parents());
+        }
+
+        function findNext() {
+            // next(): nextSibling
+            console.log($('#li2').next());
+            console.log($('#li2').next()[0]);
+        }
+
+        function findPrev() {
+            // prev(): prevSibling
+            console.log($('#li2').prev());
+        }
+
+        function findChildren() {
+            // children() : 자식 요소 모두 반환
+            console.log($('.nums').children());
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>orange</li>
+        <li class="green">green</li>
+        <li>navy</li>
+        <!-- 추가하기 -->
+    </ul>
+    <button onclick="appendJS()">append js</button>
+    <button onclick="appendJQ()">append jQuery</button>
+
+    <button onclick="prependJS()">prepend js</button>
+    <button onclick="prependJQ()">prepend jQuery</button>
+
+    <button onclick="beforeJS()">before js</button>
+    <button onclick="beforeJQ()">before jQuery</button>
+
+    <!-- 요소 삭제 -->
+    <div>
+        <ul class="nums">
+            <li>1</li>
+            <li id="li2">2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <button onclick="removeJS()">remove js</button>
+    <button onclick="removeJQ()">remove jQuery</button>
+
+    <button onclick="emptyJS()">empty js</button>
+    <button onclick="emptyJQ()">empty jQuery</button>
+    <br>
+
+    <button onclick="findParent()">findParent</button>
+    <button onclick="findParents()">findParents</button>
+    <button onclick="findNext()">findNext</button>
+    <button onclick="findPrev()">findPrev</button>
+    <button onclick="findChildren()">findChildren</button>
+</body>
+
+</html>
