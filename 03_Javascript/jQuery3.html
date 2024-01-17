@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+        integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+    <style>
+        .color-blue {
+            color: blue;
+        }
+
+        .fs-50 {
+            font-size: 50px;
+        }
+
+        .bg-pink {
+            background-color: pink;
+        }
+
+        .color-orange {
+            color: orange;
+        }
+    </style>
+    <script>
+        function addClass() {
+            $('#hi').addClass('fs-50');
+        }
+
+        function removeClass() {
+            // $('#hi').removeClass('fs-50');
+
+            $('#hi').removeClass(); // 클래스 모두 제거
+        }
+
+        function hasClass() {
+            // true or false 반환
+            console.log($('#hi').hasClass('fs-50'));
+        }
+
+        function toggleClass() {
+            // 있으면 삭제, 없으면 추가
+            $('#hi').toggleClass('bg-pink');
+        }
+
+        function switchClass() {
+            $('#hi').switchClass('color-blue', 'color-orange', 2);
+        }
+    </script>
+</head>
+
+<body>
+    <p id="hi" class="color-blue">안녕하세요!</p>
+    <button onclick="addClass()">클래스 추가</button>
+    <button onclick="removeClass()">클래스 삭제</button>
+    <button onclick="hasClass()">클래스 유무 확인</button>
+    <button onclick="toggleClass()">클래스 토글</button>
+    <button onclick="switchClass()">클래스 스위치</button>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 가로가 500px 이상일 때 */
+        @media screen and (min-width: 500px) {
+            body {
+                background-color: skyblue;
+            }
+        }
+
+        /* 가로가 300px 이하일 때 */
+        @media screen and (max-width: 300px) {
+            body {
+                background-color: orange;
+            }
+        }
+
+        /* 세로가 500px 이상일 때 */
+        @media screen and (min-height: 500px) {
+            p {
+                background-color: green;
+            }
+        }
+
+        /* 세로가 300px 이하일 때 */
+        @media screen and (max-height: 300px) {
+            p {
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+        }
+    </style>
+</head>
+<body>
+    <p>미디어 쿼리 실습</p>
+</body>
+</html>

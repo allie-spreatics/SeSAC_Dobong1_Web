@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <!-- TODO1: jQuery CDN 불러오기 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+        integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+        }
+
+        div:hover {
+            cursor: pointer;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .orange {
+            background-color: orange;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .purple {
+            background-color: purple;
+        }
+    </style>
+    <script>
+        let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+
+        // TODO2: changeColor 함수 내부 작성
+        function changeColor() { 
+            // 1번 방안 (colors X)
+            // red -> orange -> yellow -> green -> blue -> purple -> red
+
+            // 1. div 요소 선택 (클래스 알아야 하니까) -> hasClass()
+            // 2. red 라는 클래스가 있다면, if문 안에 실행
+            // if($('div').hasClass('red')) {
+            //     // red가 있다면 true로 명령이 실행
+            //     // red -> orange
+            //     $('div').switchClass('red', 'orange');
+            // } else if ($('div').hasClass('orange')) {
+            //     $('div').switchClass('orange', 'yellow');
+            // } 
+            // // 등등 yellow, green, blue
+            // else if ($('div').hasClass('purple')) {
+            //     $('div').switchClass('purple', 'red');
+            // }
+
+            // 2번 방안 (colors O)
+            // red -> orange -> yellow -> green -> blue -> purple -> red
+
+            // 현재 class : red -> red index: 0 -> colors[0], orange : colors[1]
+            // 현재 class : orange -> orange index: 1 -> colors[1], yellow : colors[2]
+            // ....
+            // $('div').switchClass(colors[i], colors[i+1])
+            // => i를 알아야 함!
+
+            let nowClass = $('div').attr('class');
+            console.log(nowClass); // red ~ purple
+            let i = colors.indexOf(nowClass); // 0 ~ 5
+
+            // purple 일 때
+            if(i == colors.length - 1)
+                $('div').switchClass(colors[i], colors[0]);
+            else
+                $('div').switchClass(colors[i], colors[i+1])
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="red" onclick="changeColor();"></div>
+</body>
+
+</html>
