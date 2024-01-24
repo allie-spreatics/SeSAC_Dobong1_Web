@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>콜백 지옥 경험하기</title>
+    <style>
+      body {
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>배경색이 1초에 한 번씩 변경됩니다. <span></span></h1>
+    <script>
+      // 콜백
+      //   setTimeout(() => {
+      //     document.body.style.backgroundColor = "red";
+      //     setTimeout(() => {
+      //       document.body.style.backgroundColor = "orange";
+      //       setTimeout(() => {
+      //         document.body.style.backgroundColor = "yellow";
+      //         setTimeout(() => {
+      //           document.body.style.backgroundColor = "greenyellow";
+      //           setTimeout(() => {
+      //             document.body.style.backgroundColor = "skyblue";
+      //           }, 1000);
+      //         }, 1000);
+      //       }, 1000);
+      //     }, 1000);
+      //   }, 1000);
+
+      //  0. 함수선언: Promise 반환하도록
+      function changeColor(color) {
+        return new Promise((resolve, reject) => {
+          return setTimeout(() => {
+            document.body.style.backgroundColor = color;
+            document.querySelector("span").innerText = `${color} 색`;
+            resolve();
+          }, 1000);
+        });
+      }
+
+      //   1. then을 이용한 체이닝
+      changeColor("red")
+        .then(() => {
+          return changeColor("orange");
+        })
+        .then(() => {
+          return changeColor("yellow");
+        })
+        .then(() => changeColor("yellowgreen"))
+        .then(() => changeColor("blue"))
+        .then(() => changeColor("navy"))
+        .then(() => changeColor("purple"));
+      // then 내부의 화살표 함수에서 return 키워드를 쓰는대신 {중괄호} 없이 써도 됨
+
+      // 2. async/await
+      async function execute() {
+        await changeColor("red");
+        await changeColor("orange");
+        await changeColor("yellow");
+        await changeColor("green");
+        await changeColor("blue");
+        await changeColor("navy");
+        await changeColor("purple");
+      }
+
+      // execute();
+    </script>
+  </body>
+</html>
