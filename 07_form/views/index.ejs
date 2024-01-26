@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form 배우기</title>
+  </head>
+  <body>
+    <h2>GET 요청</h2>
+    <form action="/getForm" method="get">
+      <label>
+        id:
+        <input type="text" name="id" />
+      </label>
+      <br />
+      <label>
+        email:
+        <input type="email" name="email" required />
+      </label>
+      <br />
+      <label>
+        password:
+        <input type="password" name="pw" />
+      </label>
+      <br />
+
+      <button type="button">제출(button type)</button>
+      <button>제출(submit type)</button>
+    </form>
+
+    <h2>POST 요청</h2>
+    <form action="/postForm" method="post">
+      <label for="id">ID</label>
+      <input
+        type="text"
+        id="id"
+        name="id"
+        required
+        pattern="^([a-zA-Z0-9가-힣]){4,10}$"
+        title="아이디는 영어 대소문자, 숫자, 한글로 이루어진 4자 이상 10자 이하입니다."
+        placeholder="id를 입력해주세요."
+      />
+      <br />
+
+      <label for="pw">비밀번호</label>
+      <input
+        type="password"
+        id="pw"
+        name="pw"
+        pattern="^([a-z0-9]){8,12}$"
+        placeholder="비밀번호를 입력해주세요."
+        required
+      />
+
+      <fieldset>
+        <legend>체크박스</legend>
+        <label>
+          <input type="checkbox" name="agree" value="마케팅 동의" /> 마케팅 동의
+        </label>
+        <br />
+        <label>
+          <input type="checkbox" name="agree" value="개인정보 수집 동의" />
+          개인정보 수집 동의
+        </label>
+        <br />
+
+        <label>
+          <input type="checkbox" name="agree" value="이용약관 동의" /> 이용약관
+          동의
+        </label>
+      </fieldset>
+
+      <input type="submit" value="제출" />
+    </form>
+    <h2>Validation</h2>
+    <form
+      action="/js-form-check"
+      method="post"
+      name="validationForm"
+      target="_blank"
+      onsubmit="return checkForm(this)"
+    >
+      <input
+        type="text"
+        name="id"
+        minlength="1"
+        placeholder="ID를 입력해주세요"
+        title="최소 한글자 이상을 입력해주세요."
+        id="input"
+      />
+
+      <br />
+      <div>우편물 수령 장소</div>
+      <label> <input type="checkbox" name="mail" value="회사" /> 회사 </label>
+      <label> <input type="checkbox" name="mail" value="자택" /> 자택 </label>
+
+      <button>제출</button>
+    </form>
+    <hr />
+    <div>
+      <a href="/practice1">실습문제1(GET)</a>
+      <br />
+      <a href="/practice2">실습문제2(POST)</a>
+    </div>
+    <script>
+      function checkForm(form) {
+        console.log(form);
+        // const form = document.forms["validationForm"];
+        // const form = document.forms["네임 속성"];
+
+        console.log(form.input); //id 참조
+        console.log(form.id); // name 참조
+
+        /* input text 창에 아무것도 쓰지 않았다면 */
+        if (form.id.value === "") {
+          alert("아이디를 입력해주세요");
+
+          // submit 이벤트를 실행하지 않도록 return false
+          return false;
+        }
+
+        /* 체크박스에서 아무것도 선택되지 않는다면 */
+        if (form.mail[0].checked === false && form.mail[1].checked === false) {
+          alert("우편물 수령장소를 선택해주세요.");
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>

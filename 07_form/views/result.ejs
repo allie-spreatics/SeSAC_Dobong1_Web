@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>폼 전송 결과</title>
+    <!-- 
+    {
+    title: "GET",
+    userInfo: req.query, //{id:'',email:'',pw:''}
+}
+     -->
+  </head>
+  <body>
+    <h1><%= title%>요청 확인하기</h1>
+    <div><span><%=userInfo.id%>(<%=userInfo.email%>)</span>님 환영합니다!</div>
+    <div>비밀번호는 <span><%=userInfo.pw%></span>이군요!!</div>
+
+    <a href="/"> 홈으로 이동하기</a>
+    <%# ejs 주석 처리 방법 %>
+  </body>
+</html>
