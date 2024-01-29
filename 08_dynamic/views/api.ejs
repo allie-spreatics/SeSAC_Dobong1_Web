@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>외부 API 사용</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      ul {
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+      }
+
+      ul p {
+        width: 200px;
+      }
+      ul img {
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>간단 open API 사용</h1>
+
+    <h3>고양이 사진 바꾸기(fetch)</h3>
+    <img src="" alt="기본 이미지" id="img" />
+    <button type="button" onclick="chageCatImg()">고양이 사진 변경</button>
+
+    <h3>영화 정보 가져오기(axios)</h3>
+    <ul></ul>
+    <script>
+      function chageCatImg() {
+        fetch("https://api.thecatapi.com/v1/images/search")
+          .then((res) => res.json())
+          .then((result) => {
+            // console.log(result);
+            // console.log(result[0].id);
+            // console.log(result[0].url);
+            // console.log(result[0].height);
+            // console.log(result[0].width);
+
+            const img = document.getElementById("img");
+            img.src = result[0].url;
+            img.alt = `${result[0].id}-cat`;
+            img.setAttribute("width", 400);
+          });
+      }
+
+      const word = "hate";
+      axios({
+        method: "get",
+        url: "http://www.omdbapi.com/?apikey=2e2df2bd&s=" + word,
+      })
+        .then((res) => {
+          console.log(res.data); // 응답 받는 데이터
+          console.log(res.data.Search);
+          console.log(res.data.Search[0]);
+          const ul = document.querySelector("ul");
+          for (let movie of res.data.Search) {
+            const div = document.createElement("div");
+            const img = document.createElement("img");
+            const p = document.createElement("p");
+
+            img.src = movie.Poster;
+            img.alt = movie.imdbID;
+            p.innerText = movie.Title;
+
+            div.append(img, p);
+            ul.append(div);
+          }
+        })
+        .catch((err) => console.log(err));
+    </script>
+  </body>
+</html>
