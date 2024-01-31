@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실습문제1 (form의 GET요청)</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form name="register">
+      <label for="name">
+        이름
+        <input type="text" id="name" name="name" />
+      </label>
+
+      <fieldset>
+        <legend>성별</legend>
+        <label for="male">
+          <input type="radio" name="gender" id="male" value="남자" /> 남자
+        </label>
+        <label for="female">
+          <input type="radio" name="gender" id="female" value="여자" /> 여자
+        </label>
+      </fieldset>
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year" id="year">
+          <%for(let i=1985; i<=2003; i++){%>
+          <option value="<%=i%>"><%=i%></option>
+          <%}%>
+        </select>
+        <span>년</span>
+        <select name="month" id="month">
+          <%for(let i=1; i<=12; i++){%>
+          <option value="<%=i%>"><%=i%></option>
+          <%}%>
+        </select>
+        <span>월</span>
+        <select name="date" id="date">
+          <%for(let i=1; i<=31; i++){%>
+          <option value="<%=i%>"><%=i%></option>
+          <%}%>
+        </select>
+        <span>일</span>
+      </fieldset>
+      <fieldset>
+        <legend>관심사</legend>
+        <label>
+          <input type="checkbox" name="favorite" value="여행" /> 여행
+        </label>
+        <label>
+          <input type="checkbox" name="favorite" value="패션" /> 패션
+        </label>
+        <label>
+          <input type="checkbox" name="favorite" value="음식" /> 음식
+        </label>
+      </fieldset>
+      <button type="button" onclick="submitInfo()">제출</button>
+    </form>
+    <div class="result"></div>
+    <script>
+      const result = document.querySelector(".result");
+      const form = document.forms["register"];
+
+      function submitInfo() {
+        // 관심사(체크박스) 새로운 배열로 만들기
+        const favs = [];
+        form.favorite.forEach((checkbox) => {
+          if (checkbox.checked) {
+            favs.push(checkbox.value);
+          }
+        });
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+          year: form.year.value,
+          month: form.month.value,
+          date: form.date.value,
+          fav: favs,
+        };
+        axios({
+          method: "GET",
+          url: "/axios-practice1",
+          params: data,
+        })
+          .then(function (res) {
+            console.log(res);
+            console.log(res.data);
+
+            const { name, year, month, date, fav } = res.data;
+
+            result.innerText = `${res.data.name}님 환영합니다.
+생일은 ${year}/${month}/${date}
+취미는 ${fav}`;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    </script>
+  </body>
+</html>
