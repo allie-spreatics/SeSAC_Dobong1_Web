@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>댓글 자세히 보기</title>
+  </head>
+  <body>
+    <!-- 
+      commentInfo:{
+        id: 1,
+        userid: "apple",
+        date: "2022-10-31",
+        comment: "안녕하세요~",
+    },
+     -->
+    <h1><%=commentInfo.userid%>님의 댓글입니다.</h1>
+    <a href="/comments">댓글 목록 보기</a>
+    <p>작성일: <%=commentInfo.date%></p>
+    <p>댓글 내용: <%=commentInfo.comment%></p>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>댓글 목록 보기</title>
+    <!-- commentInfo:[
+    {
+        id: 1,
+        userid: "apple",
+        date: "2022-10-31",
+        comment: "안녕하세요~",},{}] -->
+  </head>
+  <body>
+    <h1>댓글 목록</h1>
+    <a href="/">홈으로 이동하기</a>
+
+    <ul>
+        <%for(let i=0; i<commentInfo.length;i++){%>
+            <li>
+                <b><%=commentInfo[i].userid%></b>
+                <a href="/comment/<%=i+1%>"><%=commentInfo[i].comment%></a>
+            </li>
+        <%}%>
+    </ul>
+  </body>
+</html>
