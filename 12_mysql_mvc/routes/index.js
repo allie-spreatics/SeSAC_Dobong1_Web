@@ -6,7 +6,7 @@ const controller = require("../controller/Cvisitor");
 router.get("/", controller.main);
 router.get("/visitors", controller.getVisitors);
 router.get("/visitor/:id", controller.getVisitor);
-// router.get("/visitor", controller.getVisitor);
+// router.get("/visitor", controller.getVisitor2); // 쿼리로 값을 받을 때
 
 // 등록, 삭제, 수정
 router.post("/visitor", controller.postVisitor);
