@@ -15,6 +15,7 @@ INSERT INTO visitor(name, comment) VALUES('allie','hi~');
 INSERT INTO visitor VALUES(null, '홍길동',"홍길동입니다.");
 
 select * from visitor;
+select * from user;
 
 ############[DCL]###############
 
