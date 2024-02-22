@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head', {title: 'Login'}) %>
+    <link rel="stylesheet" href="/static/login.css" />
+  </head>
+  <body>
+    <div class="login-box">
+      <h1>로그인</h1>
+      <p>
+        참고! 정답 아이디는 <b>cocoa</b> 이고<br />
+        비밀번호는 <b>1234</b> 입니다.
+      </p>
+
+      <!-- 폼전송으로 로그인 진행 -->
+      <form action="/login" method="POST">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="id">ID</span>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="id input"
+            aria-describedby="id"
+            name="id"
+          />
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="pw">PW</span>
+          <input
+            type="password"
+            class="form-control"
+            aria-label="pw input"
+            aria-describedby="pw"
+            name="pw"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-dark">Login</button>
+        <br />
+        <a href="/">Home 이동하기</a>
+      </form>
+    </div>
+  </body>
+</html>
