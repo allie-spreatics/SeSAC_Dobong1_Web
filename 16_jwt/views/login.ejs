@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 페이지</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form name="login-form">
+      <input type="text" id="id" placeholder="ID를 입력하세요" />
+      <input type="password" id="pw" placeholder="비밀번호를 입력하세요" />
+      <button type="button" onclick="login()">로그인</button>
+    </form>
+
+    <script>
+      // POST, /login
+      async function login() {
+        const form = document.forms["login-form"];
+        const response = await axios({
+          method: "POST",
+          url: "/login",
+          data: {
+            id: form.id.value,
+            pw: form.pw.value,
+          },
+        });
+
+        console.log(response.data);
+        //{result, token}
+        //{result, message}
+
+        const { result, token, message } = response.data;
+      }
+    </script>
+  </body>
+</html>
