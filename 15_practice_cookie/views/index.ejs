@@ -102,7 +102,7 @@
         console.log(checkbox.checked);
         if (checkbox.checked) {
           axios({
-            url: "setCookie",
+            url: "/setCookie",
             method: "POST",
           }).then((res) => {
             console.log(res.data);

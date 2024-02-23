@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // TODO: cookie parser 미들웨어 등록
-app.use(cookieParser("secret"));
+app.use(cookieParser("secret123456789"));
 
 const cookieConfig = {
   signed: true,
