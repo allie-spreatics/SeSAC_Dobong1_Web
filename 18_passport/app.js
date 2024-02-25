@@ -1,7 +1,9 @@
 const express = require("express");
+
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+
 const NaverStrategy = require("passport-naver").Strategy;
 const models = require("./models"); //model 불러오기
 require("dotenv").config();
@@ -32,9 +34,9 @@ app.use(passport.session());
 
 // local 전략 세우기
 passport.use(
+  // req.body로 넘어오는 키값과 일치해야 함
   new LocalStrategy(
-    // req.body로 넘어오는 키값과 일치해야 함
-    { usernameField: "inputId", passwordField: "inputPw", session: true },
+    { usernameField: "inputId", passwordField: "inputPw" },
 
     //cb(); // 성공, 실패, 에러에 대한 값을 넘길 수 있음
     async (inputId, inputPw, cb) => {
@@ -123,7 +125,6 @@ passport.deserializeUser(async (inputId, cb) => {
     const result = await models.User.findOne({
       where: { id: inputId },
     });
-    console.log("deserial.. ,", result);
 
     if (result) cb(null, result);
   } catch (err) {
@@ -159,14 +160,10 @@ app.post("/login", (req, res, next) => {
   passport.authenticate("local", (authErr, user, info) => {
     if (authErr) next(authErr);
     if (!user) {
-      console.log("user 정보 없음");
-      console.log(info.message);
       return res.send({ loginSuccess: false, message: info.message });
     }
     req.logIn(user, (loginErr) => {
       if (loginErr) {
-        console.log(req.user);
-        console.log("what happened?", loginErr);
         next(loginErr);
       }
       console.log("로그인 성공");
@@ -213,7 +210,7 @@ app.post("/register", async (req, res) => {
   const duplicated = await models.User.findOne({
     where: { id: req.body.id },
   });
-  console.log(duplicated);
+  console.log(duplicated); //결과확인
   if (duplicated) {
     // 중복 아이디라면
 
@@ -225,9 +222,7 @@ app.post("/register", async (req, res) => {
       // provider: "local",
     });
     console.log(result);
-    // res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
-    // res.write(`<script>alert("${result.id}님 회원가입 성공!
-    // 로그인 페이지로 이동합니다.")</script>`);
+
     res.redirect("/login");
   }
 });
