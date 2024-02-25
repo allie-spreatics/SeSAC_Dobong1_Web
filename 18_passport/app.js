@@ -2,8 +2,9 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const NaverStrategy = require("passport-naver").Strategy;
 const models = require("./models"); //model 불러오기
-
+require("dotenv").config();
 const app = express();
 const PORT = 8000;
 
@@ -29,7 +30,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// {cocoa 1234}
+// local 전략 세우기
 passport.use(
   new LocalStrategy(
     // req.body로 넘어오는 키값과 일치해야 함
@@ -61,6 +62,45 @@ passport.use(
         cb(null, false, {
           message: "해당 id가 존재하지 않습니다. id를 다시 확인해주세요",
         });
+      }
+    }
+  )
+);
+
+// naver 간편로그인 전략 세우기
+passport.use(
+  new NaverStrategy(
+    {
+      clientID: process.env.NAVER_CLIENT,
+      clientSecret: process.env.NAVER_CLIENT_SECRET,
+      callbackURL: "/login/auth/naver/callback",
+    },
+    async (accessToken, refreshToken, profile, cb) => {
+      // profile은 sns마다 제공하는 종류가 달라서 어떤 것 사용할지 확인해보기
+      console.log(profile);
+      const result = await models.User.findOne({
+        where: {
+          id: profile.id,
+        },
+      });
+
+      if (result) {
+        // 이미 가입된 유저라면, 로그인작업
+        cb(null, result);
+      } else {
+        // 가입되지 않은 유저라면 회원가입시키기
+        const newNaverUser = profile;
+        const dbresult = await models.User.create({
+          id: newNaverUser.id,
+          provider: "naver",
+        });
+        if (dbresult) {
+          // insert성공 > 회원가입 작업
+          cb(null, newNaverUser);
+        } else {
+          //
+          cb(null, false, { message: "네이버 회원 생성 에러" });
+        }
       }
     }
   )
@@ -151,6 +191,45 @@ app.get("/logout", (req, res, next) => {
     }
     return res.redirect("/");
   });
+});
+
+// 5. naver 간편 로그인
+app.get("/login/auth/naver", passport.authenticate("naver")); // naver전략을 쓴다고 알려주는 것
+// 실제적인로그인 처리는 여기서 진행됨
+app.get(
+  "/login/auth/naver/callback",
+  passport.authenticate("naver", {
+    successRedirect: "/", // 로그인 성공하면 /로 redirect
+    failureRedirect: "/login",
+  })
+);
+
+// ** 회원가입
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+app.post("/register", async (req, res) => {
+  // 중복 아이디 체크해보기
+  const duplicated = await models.User.findOne({
+    where: { id: req.body.id },
+  });
+  console.log(duplicated);
+  if (duplicated) {
+    // 중복 아이디라면
+
+    res.redirect("/register");
+  } else {
+    const result = await models.User.create({
+      id: req.body.id,
+      password: req.body.pw,
+      // provider: "local",
+    });
+    console.log(result);
+    // res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
+    // res.write(`<script>alert("${result.id}님 회원가입 성공!
+    // 로그인 페이지로 이동합니다.")</script>`);
+    res.redirect("/login");
+  }
 });
 // sequelize 설정
 models.sequelize
