@@ -6,7 +6,7 @@ const NaverStrategy = require("passport-naver").Strategy;
 const models = require("./models"); //model 불러오기
 require("dotenv").config();
 const app = express();
-const PORT = 8000;
+const PORT = 8080;
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
