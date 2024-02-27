@@ -11,4 +11,12 @@ const development = {
   dialect: "mysql",
 };
 
-module.exports = { development };
+const production = {
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: "sesac",
+  host: "118.67.132.32",
+  dialect: "mysql",
+};
+
+module.exports = { development,production };
