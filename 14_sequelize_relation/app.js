@@ -16,6 +16,7 @@ sequelize
   .then(() => {
     app.listen(PORT, () => {
       console.log(`http://localhost:${PORT}`);
+      console.log(`http://118.67.132.32:${PORT}`);
     });
   })
   .catch((err) => console.log(err));
