@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 // const config = require(__dirname + "/../config/config.json")["development"];
 
 // env 사용할 때는 js 파일과 같이 사용
-const config = require(__dirname + "/../config/config.js")["development"];
+const config = require(__dirname + "/../config/config.js")["production"];
 
 console.log("config >> ", config);
 const db = {};
