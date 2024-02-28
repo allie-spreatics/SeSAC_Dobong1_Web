@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- gsap 기본 CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- gsap scrollTrigger CDN -->
+    <!-- scroll 기반 애니메이션을 사용하기 위해서는
+    기본 gsap CDN 뿐만 아니라 scroll 기반 cdn도 필요합니다. -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+      integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      body {
+        height: 3000px;
+      }
+
+      .box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+      .box2 {
+        width: 150px;
+        height: 150px;
+        border: 2px solid gray;
+        background-color: deeppink;
+      }
+      .circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid salmon;
+      }
+
+      .circle1 {
+        background-color: aqua;
+      }
+      .circle2 {
+        background-color: aquamarine;
+      }
+      .circle3 {
+        background-color: chartreuse;
+      }
+      section {
+        background-color: skyblue;
+        height: 700px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- normal scroll trigger -->
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <!-- timeline scroll trigger -->
+    <section>
+      <div class="circle circle1"></div>
+      <div class="circle circle2"></div>
+      <div class="circle circle3"></div>
+    </section>
+
+    <script>
+      // ********* 기본 scrollTrigger
+      // 첫번째 요소는 움직일 요소
+      gsap.from(".box1", {
+        // scrollTrigger 옵션으로 스크롤 기반 애니메이션 제어
+        scrollTrigger: {
+          trigger: ".box1", // 스크롤의 기준점
+          start: "top 80%", // 기준요소와 움직일 요소의 기준점 시작부분 설정
+
+          end: "100% 50%", // 기준점 끝부분 설정
+          scrub: 1, // 스크롤 동작을 되돌려도 해당동작 반복할지 결정
+          // markers: true, // 테스트시 scroll start, scroll end 지점 보여주는 옵션
+        },
+        y: 800,
+        opacity: 0,
+      });
+
+      gsap.to(".box2", {
+        scrollTrigger: {
+          trigger: ".box2",
+          start: "top top",
+          scrub: 1,
+          // markers: true,
+        },
+        rotate: 720,
+        x: 500,
+      });
+
+      // ******** timeline 과 함께 써보기
+      const tl = gsap.timeline();
+      // scrollTrigger : animation 설정 내부에 작성 > timeline 동작 x
+      // timeline과 2개 이상의 요소에 애니메이션을 적용시킬 때는
+      // create() 메소드 사용 필수!
+
+      // timeline with scrollTrigger 방법1
+      // 타임라인과 동시에 scrollTrigger 적용
+      /* tl.to(".circle1", {
+        scrollTrigger: {
+          trigger: "section", // 스크롤 기준점
+          animation: tl, // 타임라인
+          start: "top top",
+          end: "bottom 50%",
+          scrub: true,
+          markers: true,
+        },
+        scale: 2,
+        opacity: 0,
+      })
+        .to(".circle2", {
+          scrollTrigger: {
+            trigger: "section", // 스크롤 기준점
+            animation: tl, // 타임라인
+            start: "top top",
+            end: "bottom 50%",
+            scrub: true,
+            markers: true,
+          },
+          scale: 2,
+          opacity: 0,
+        })
+        .to(".circle3", {
+          scrollTrigger: {
+            trigger: "section", // 스크롤 기준점
+            animation: tl, // 타임라인
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            markers: true,
+          },
+          scale: 2,
+          opacity: 0,
+        }); */
+
+      // timeline with scrollTrigger 방법2
+      // 적용할 애니메이션 설정을 먼저 하고, 이후에 create를 이용해서 scrollTrigger 설정하기
+      tl.to(".circle1", {
+        scale: 2,
+        opacity: 0,
+      })
+        .to(".circle2", {
+          scale: 2,
+          opacity: 0,
+        })
+        .to(".circle3", {
+          scale: 2,
+          opacity: 0,
+        });
+
+      // create를 이용한다면 trigger 설정을 여러번 반복해서 기재하지 않아도 됨
+      ScrollTrigger.create({
+        trigger: "section", // 스크롤 기준점
+        animation: tl, // 타임라인
+        start: "top top",
+        end: "bottom 0",
+        scrub: true,
+        markers: true,
+        pin: true, //스크롤 동작동안 기준이 되는 trigger 위치 고정여부 결정
+      });
+
+      // 방법1과 방법2 비교해보세요!
+    </script>
+  </body>
+</html>
