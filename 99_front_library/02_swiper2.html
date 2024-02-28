@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>swiper이용해서 전체화면 바꿔보기</title>
+
+    <!-- swiper css cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+
+    <!-- swiper js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .swiper {
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(137, 43, 226, 0.251);
+    }
+
+    .swiper .swiper-wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper .swiper-wrapper .swiper-slide {
+      width: 100%;
+      height: 100%;
+      background-color: antiquewhite;
+      border: 1px solid slateblue;
+      text-align: center;
+      font: 700 30px/100vh "arial";
+    }
+  </style>
+  <body>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">slide 1</div>
+        <div class="swiper-slide">slide 2</div>
+        <div class="swiper-slide">slide 3</div>
+        <div class="swiper-slide">slide 4</div>
+      </div>
+      <div class="swiper-scrollbar"></div>
+    </div>
+    <script>
+      const swiper = new Swiper(".swiper", {
+        direction: "vertical",
+        loop: false,
+        speed: 1000,
+        mousewheel: true,
+        // And if we need scrollbar
+        scrollbar: {
+          el: ".swiper-scrollbar",
+        },
+      });
+    </script>
+  </body>
+</html>

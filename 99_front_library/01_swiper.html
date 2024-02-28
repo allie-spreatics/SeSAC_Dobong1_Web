@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>swiper 라이브러리 사용해보기</title>
+    <!--swiper cdn링크
+        https://swiperjs.com/get-started#use-swiper-from-cdn 참고하기 -->
+
+    <!-- swiper css CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+    <!-- swiper js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <style>
+      .swiper {
+        width: 100%;
+        background-color: antiquewhite;
+        height: 200px;
+      }
+
+      .swiper-slide {
+        width: 200px;
+        height: 100%;
+        border: 1px solid slateblue;
+        text-align: center;
+        line-height: 200px;
+        font-size: 25px;
+      }
+
+      /* 슬라이드 다음/이전 버튼 */
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: black;
+      }
+
+      /* 슬라이드 pagination1 위치 조정등 한번에 할 수 있음 
+      pagination 전체를 감싸고 있는 클래스 */
+      .swiper-pagination {
+        /* 테두리를 줘서 어떤 구역을 가지고 있는지 확인 */
+        /* border: 1px solid blue; */
+      }
+
+      /* 슬라이드 pagination2 꾸미기
+      pagination 하나하나를 가리키는 클래스 */
+      .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        background: rgb(79, 75, 76);
+        border: 1px solid black;
+        opacity: 1;
+      }
+
+      /* 슬라이드 pagination3
+      선택된 pagination을 가리키는 클래스 */
+      .swiper-pagination-bullet-active {
+        width: 40px;
+        transition: width 0.5s;
+        border-radius: 5px;
+        background: pink;
+        border: 1px solid transparent;
+      }
+
+      /* 반응형을 위한 inner 1200px section */
+      section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 
+    1. swiper library를 이용해서 스와이퍼를 만들 때에는
+       정해진 구조로 만들어줘야 합니다.
+       일반적으로 아래와 같은 클래스를 주어 만들어줍니다.
+       .swiper > .swiper-wrapper > .swiper-slide
+
+    2. 슬라이드에 원하는 css를 주기 위해서는 정해져있는 클래스에 줘야 하는데,
+       위의 css 클래스를 참고해주세요!
+
+    3. js의 new Swiper 를 이용해서 정해진 옵션값들을 부여해서 동작을 만들어 줄 수 있습니다.
+       옵션 값들은 맨 아래의 script 창 참고해주세요!!
+      -->
+
+    <!-- first slide:: 기본 슬라이드 구현하기!! -->
+    <div class="swiper swiper1">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">slide 1</div>
+        <div class="swiper-slide">slide 2</div>
+        <div class="swiper-slide">slide 3</div>
+        <div class="swiper-slide">slide 4</div>
+        <div class="swiper-slide">slide 5</div>
+        <div class="swiper-slide">slide 6</div>
+        <div class="swiper-slide">slide 7</div>
+        <div class="swiper-slide">slide 8</div>
+        <div class="swiper-slide">slide 9</div>
+      </div>
+
+      <!-- (선택) pagination ? 아래 선택창 동그라미 -->
+      <div class="swiper-pagination"></div>
+
+      <!-- (선택) 다음/이전 슬라이드로 넘어갈 수 있는 화살표-->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <!-- (선택) 스크롤 -->
+      <div class="swiper-scrollbar"></div>
+    </div>
+
+    <br /><br />
+    <!-- 2. swiper반응형 적용해보기! -->
+    <!-- .swiper.swiper2>.swiper-wrapper>.swiper-slide*7 -->
+    <section>
+      <div class="swiper swiper2 mt-4">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">a</div>
+          <div class="swiper-slide">b</div>
+          <div class="swiper-slide">c</div>
+          <div class="swiper-slide">d</div>
+          <div class="swiper-slide">e</div>
+          <div class="swiper-slide">f</div>
+          <div class="swiper-slide">g</div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </section>
+
+    <script>
+      // 이름이 꼭 swiper여야 하는건 아님,
+      const sd = new Swiper(".swiper1", {
+        // direction: "vertical", //세로 스와이퍼
+        // direction (default horizontal) 기본은 가로 스와이퍼
+        loop: true,
+        // autoplay:false //기본 값 자동으로 넘기기 옵션은 false
+        autoplay: {
+          // 자동 옵션 줄 때는
+          delay: 500, // 몇초간격으로 움직일지 (1000이 1초)
+          disableOnInteraction: true,
+          // 사용자가 수동전환시키면 자동옵션 해제됨
+        },
+
+        slidesPerView: 3, //한 화면에 보여줄 슬라이드 수
+        // mousewheel: true, //마우스 휠을 움직여서 슬라이드를 움직일지
+
+        speed: 1000,
+        //transition 같은 것.
+        // 한 슬라이드에서 다음 슬라이드까지 넘어가는데 걸리는 시간
+        // default값 300(0.3초), << 너무 빠른 느낌이 있음
+
+        spaceBetween: 6, // 슬라이드간의 margin(gap)
+
+        // 페이지네이션이 있다면 설정하는 부분
+        // el옵션은 어떤 요소가 pagination을 담당하는지 선택자 작성
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true, // pagination 동그라미 누르면 이동할 수 있도록 하는 옵션
+        },
+
+        // 화살표(이전슬라이드, 다음슬라이드)를 쓴다면 설정하는 부분
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+
+        // 스크롤바를 쓴다면 설정하는 부분
+        scrollbar: {
+          el: ".swiper-scrollbar",
+        },
+      });
+
+      /* 두번째 슬라이드 - 반응형 슬라이드 만들기 */
+      // object 형태로 변수에 담아서 사용
+      const setSwiper2 = {
+        // 가장 작은 사이즈 기준(반응형)
+        slidesPerView: 2,
+        loop: false,
+        speed: 5000,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        //반응형을 위한 breakpoints 옵션
+        breakpoints: {
+          // 화면사이즈 768px 이상일 때 설정할 옵션
+          768: {
+            slidesPerView: 4,
+          },
+        },
+      };
+      const swiper2 = new Swiper(".swiper2", setSwiper2); // 두번째 옵션 위에서 만들어준 obj
+      // console.log(window.innerWidth); // 현재 윈도우 넓이 확인해보기
+
+      /* 
+      (참고)
+      - swiper 속성 잘 정리되어 있는 블로그
+      https://iridescent-zeal.tistory.com/150
+      
+      - 슬라이드를 구현하기 위한 다른 라이브러리! slick!
+      https://kenwheeler.github.io/slick/
+      swiper랑 비슷한 슬라이드 라이브러리! 
+      */
+    </script>
+  </body>
+</html>
