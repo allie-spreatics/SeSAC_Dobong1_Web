@@ -1,3 +1,4 @@
+import Alphabet from "./components/Alphabet";
 import { ClassProps, ClassProps2 } from "./components/ClassProps";
 import ClassState from "./components/ClassState";
 import {
@@ -5,10 +6,19 @@ import {
   FunctionProps2,
 } from "./components/FunctionProps";
 import FunctionState from "./components/FunctionState";
+import PropsMap from "./components/PropsMap";
 import PororoObj from "./components/practice/PororoObj";
+import PracticeMap from "./components/practice/PracticeMap";
+import PracticeMap2 from "./components/practice/PracticeMap2";
 import PracticeState from "./components/practice/PracticeState";
 
 function App() {
+  const dataArr = [
+    { name: "peach", number: 5, price: 5000 },
+    { name: "banana", number: 1, price: 3000 },
+    { name: "apple", number: 10, price: 7000 },
+    { name: "grape", number: 2, price: 8500 },
+  ];
   return (
     <div className="App">
       <h1>hello, props</h1>
@@ -33,10 +43,14 @@ function App() {
       <h1>hello, state</h1>
       <ClassState />
       <FunctionState />
-
+      <h1>map과 filter 사용</h1>
+      <PropsMap arr={dataArr} />
+      <Alphabet />
       <h1>연습문제</h1>
       <PracticeState></PracticeState>
       <PororoObj />
+      <PracticeMap />
+      <PracticeMap2 />
     </div>
   );
 }
