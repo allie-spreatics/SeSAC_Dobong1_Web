@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+}
+
+/* container */
+header {
+  /* width: 100%; */
+  background-color: #4277ff;
+  text-align: center;
+  color: white;
+  padding: 1rem 0;
+  font-size: 1.7rem;
+}
+
+footer {
+  height: 200px;
+  background-color: #eee;
+  box-shadow: 0px 0 3px #aaaa;
+  margin-top: 10rem;
+  padding: 8px 0;
+  color: #bbb;
+
+  /* 글자 맨 아래로 내리기 위함 */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+main {
+  padding: 0 16px;
+}
+
+/* postList */
+.post-container {
+  padding: 1rem;
+  border-radius: 20px;
+  max-width: 1000px;
+  margin: 2rem auto;
+  box-shadow: 0px 3px 10px #bbc4ff5d;
+  background-color: aliceblue;
+}
+.post-container div {
+}
+.post-container div .id {
+  font-weight: 700;
+  color: #4277ff;
+  text-shadow: 0px 0px 2px rgba(123, 123, 123, 0.804);
+}
+.post-container div .title {
+}
+.post-container .body {
+}
