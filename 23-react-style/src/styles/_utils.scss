@@ -1,0 +1,46 @@
+$color-red: #d04848;
+$color-orange: #f3b95f;
+$color-yellow: #fde767;
+$color-green: #96ceb4;
+$color-blue: #6895d2;
+
+$boxShadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+
+$animation-duration: 0.4s;
+
+@mixin box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+// 매개변수 있는 ver. mixin
+@mixin circle($circleColor, $circleOpacity) {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: inline-block;
+  background-color: $circleColor;
+  opacity: $circleOpacity;
+}
+
+@mixin box2($boxBgColor: $color-red, $boxFontSize: 15px, $boxColor: white) {
+  @include box();
+  background-color: $boxBgColor;
+  font-size: $boxFontSize;
+  color: $boxColor;
+  text-align: center;
+  line-height: 100px;
+
+  //   if문
+  @if $boxBgColor==$color-red {
+    border-radius: 50%;
+  } @else if $boxColor==black {
+    border-radius: 20%;
+  } @else {
+    border-radius: 0%;
+  }
+}
