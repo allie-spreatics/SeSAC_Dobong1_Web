@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+}
+
+// header
+header {
+  background-color: #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  .menu-item {
+    margin: 0 8px;
+  }
+}
+
+// main page
+.MainPage {
+  background-color: #ffe5e3;
+  min-height: 100vh;
+  &.dark {
+    background-color: #333;
+    color: white;
+  }
+}
+
+// product page
+.ProductPage {
+  background-color: rgb(217, 235, 250);
+  min-height: 100vh;
+  .ProductList {
+    .ProductItem {
+      text-decoration: none;
+      color: brown;
+      &:hover {
+        color: black;
+        font-weight: 700;
+      }
+      ul {
+        margin: 30px auto;
+        width: 80vw;
+        background-color: white;
+      }
+    }
+  }
+}
