@@ -1,14 +1,20 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Route, Routes } from 'react-router-dom';
+import Student from './pages/Sdudent';
+import PracticeHeader from './components/PracticeNav';
+import Index from './pages/Index';
+import NotFound from './pages/404';
+import './styles/common.css';
 
-const MyLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-`;
 function App() {
   return (
     <div className="App">
-      <MyLink>안녕하세요</MyLink>
+      <PracticeHeader />
+      <Routes>
+        실습
+        <Route path="/" element={<Index />}></Route>
+        <Route path="/student/:name" element={<Student />}></Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
