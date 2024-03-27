@@ -1,6 +1,7 @@
 import CustomHook from "./components/CustomHook";
 import UseCallback from "./components/UseCallback";
 import UseCallback2 from "./components/UseCallback2";
+import Form from "./components/UseForm";
 import UseMemo from "./components/UseMemo";
 import UseMemoObj from "./components/UseMemoObj";
 import UseReducer from "./components/UseReducer";
@@ -16,7 +17,8 @@ function App() {
       {/* <UseCallback />
       <UseCallback2 /> */}
       {/* <UseReducer /> */}
-      <CustomHook />
+      {/* <CustomHook /> */}
+      <Form />
     </>
   );
 }
