@@ -1,0 +1,148 @@
+.d-block{
+    display: block;
+    background-color: aquamarine;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    margin: 20px;
+}
+
+.d-inline{
+    display: inline;
+    background-color: pink;
+    width: 1000px;
+    height: 200px;
+    /* padding: 15px;
+    margin: 20px; */
+}
+
+.d-inline-block{
+    display: inline-block;   
+    width: 100px;
+    height: 100px;
+    background-color: yellowgreen;
+    border: 1px solid blue;
+    padding: 15px;
+    margin: 20px;
+}
+
+.parent{
+    width: 400px;
+    /* 
+    width를 300px로 바꾸면 min은 400px 유지, max 는 같이 줄어듦
+    width를 500px로 바꾸면 max는 400px 유지, min 은 같이 늘어남 
+    */
+    height: 200px;
+    background-color: red;
+}
+
+.parent > .min{
+    min-width: 400px;
+    height: 100px;
+    background-color: orange;
+}
+
+.parent > .max{
+    max-width: 400px;
+    height: 100px;
+    background-color: rebeccapurple;
+}
+
+.box {
+    background-color: beige;
+    border: 1px solid black;
+}
+
+.box-px{
+    width: 50px;
+    height: 50px;
+}
+
+.box-view{
+    width: 50vw;
+    height: 50vh;
+}
+
+.box-per{
+    width: 50%;
+    /* height: 50%; */
+}
+
+.rem{
+    font-size: 2rem;
+}
+
+.em{
+    font-size: 2em;
+}
+
+.square{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    background-color: blue;
+}
+
+.border{
+    background-color: yellow;
+    /* 단축속성: 굵기 모양 색깔 */
+    /* border: 10px solid red; */
+    border-color: red orange green blue;
+    border-style: dotted;
+    border-width: 3px;
+    border-right-width: 5px;
+}
+
+.rounded{
+    background-color: yellowgreen;
+    /* border-radius: 50%; */
+    border-radius: 5px 10px 20px 40px;
+    border-radius: 5px 20px 40px;
+    border-radius: 5px 40px;
+}
+
+.box-sizing{
+    padding: 20px;
+    border: 15px solid red;
+    background-color: orange;
+}
+
+.content-box{
+    box-sizing: content-box;
+}
+
+.border-box{
+    box-sizing: border-box;
+}
+
+.d-none {
+    display: none;
+    background-color: red;
+}
+.invisible {
+  visibility: hidden;
+  background-color: orangered;
+}
+
+.opacity-0 {
+  opacity: 0.5;
+  background-color: tomato;
+}
+
+.overflow-hidden{
+    overflow: hidden;
+}
+
+.overflow-scroll{
+    overflow: scroll;
+}
+
+.overflow-auto{
+    overflow: auto;
+}
+
+.overflow-visible{
+    overflow: visible;
+}

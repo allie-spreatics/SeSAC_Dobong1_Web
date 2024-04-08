@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./includes/head',{title:'HOME'})%>
+  </head>
+  <body>
+    <%- include('./includes/header') %>
+
+    <br />
+    <%if(isLogin){%>
+    <div>안녕하세요, <%= userInfo.name%>님</div>
+    <p><%= userInfo.msg %></p>
+    <%} else{%>
+    <div>로그인을 해주세요.</div>
+    <%}%>
+    <h1>안녕하세요 ejs 입니다.</h1>
+    <img src="/static/img/pooh.png" alt="pooh" width="100" />
+
+    <h3>포문 사용해보기</h3>
+    <h3>ejs language support</h3>
+    <%for(let i=1; i<=5; i++) {%>
+    <p>안녕하세요</p>
+    <img src="/static/img/pooh<%=i%>.png" alt="pooh<%=i%>" width="100" />
+    <%}%>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "15_cookie_session",
+  "version": "1.0.0",
+  "description": "cookie와 session 사용해보기",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nexpress-sessio": "^1.18.0"
+  }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>방명록 만들기</title>
+  </head>
+  <body>
+    <h1>여기는 방명록!!</h1>
+    <form>
+      <label for="writer">작성자</label>
+      <input type="text" id="writer" autocomplete="off" />
+      <br />
+      <br />
+
+      <label for="content">내용</label>
+      <input type="text" id="content" style="width: 500px" autocomplete="off" />
+      <br />
+      <br />
+
+      <button type="button" onclick="writeNote();">등록</button>
+    </form>
+
+    <br />
+    <br />
+
+    <table id="table" border="1" cellpadding="10" cellspacing="1">
+      <tr>
+        <th>작성자</th>
+        <th>내용</th>
+        <th>작성일</th>
+      </tr>
+      <!-- 
+        코드 추가 예시
+        <tr>
+          <td>홍길동</td>
+          <td>하이</td>
+          <td>2022-10-05 12:34</td>
+        </tr>
+      -->
+    </table>
+
+    <script>
+      // TODO: practice14_설명.png 이미지의 조건을 만족하는 js 코드 작성
+      // writeNote() 함수를 미리 정의해두었습니다.
+
+      // [등록] 버튼 클릭시 writeNote() 함수가 실행되도록 인라인 방식으로 미리 설정해 두었습니다.
+      function writeNote() {
+        // input 요소들의 value 값을 가져왔음
+        let name = document.getElementById('writer').value;
+        let content = document.getElementById('content').value;
+
+        // 추가할 부모 요소 선택
+        let table = document.getElementById('table');
+        // tr 생성 (td 태그들 넣기 위함)
+        let tr = document.createElement('tr');
+
+        let tdWriter = document.createElement('td');
+        tdWriter.innerText = name;
+
+        let tdContent = document.createElement('td');
+        tdContent.innerText = content;
+
+        // 작성일 td 만들기
+        let tdDate = document.createElement('td');
+        // 현재 시간 가져올 때는 Date 객체
+        let now = new Date();
+        tdDate.innerText = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
+
+        // tr에 위에서 만든 3개의 td 추가
+        tr.append(tdWriter, tdContent, tdDate);
+
+        // table에 tr 추가
+        table.append(tr);
+
+        // input 초기화
+        document.getElementById('writer').value = '';
+        document.getElementById('content').value = '';
+      }
+    </script>
+  </body>
+</html>

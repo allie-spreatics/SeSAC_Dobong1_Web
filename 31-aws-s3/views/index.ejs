@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>s3 이미지 사용해보기</title>
+  </head>
+  <body>
+    <h3>이미지 불러오기</h3>
+    <img
+      src="https://bucket-allie.s3.ap-northeast-2.amazonaws.com/img6.jpg"
+      alt="푸이미지 불러오기"
+    />
+    <h3>이미지 업로드</h3>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="image" id="image" />
+      <button type="submit">업로드</button>
+    </form>
+
+    <% if(imageUrl !==''){ %>
+    <img src="<%=imageUrl%>" alt="업로드 이미지" />
+    <% } %>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery 실습1</title>
+    <!-- jQuery CDN 불러오기 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+      function changeImg(name) {
+        // name: apple or banana or grape or peach
+        console.log('name :', name)
+
+        // img의 src 속성을 변경해주는 함수
+        $('img').attr('src', `./img/${name}.png`);
+      }
+    </script>
+  </head>
+  <body>
+    <!-- 필요하다면 이미지 경로 변경 -->
+    <img src="./img/defaultImg.png" alt="과일" width="230px" height="200px" />
+    <br />
+    <button onclick="changeImg('apple')">사과</button>
+    <button onclick="changeImg('banana')">바나나</button>
+    <button onclick="changeImg('grape')">포도</button>
+    <button onclick="changeImg('peach')">복숭아</button>
+  </body>
+</html>

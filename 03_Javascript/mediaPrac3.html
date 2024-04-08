@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/837ff3adc1.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      :root {
+        --nav-height-lg: 100px;
+        --nav-height-sm: 60px;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      /* HEADER */
+      header {
+        width: 100%;
+        height: var(--nav-height-lg);
+        z-index: 100;
+      }
+
+      /* 768px 보다 클때의 header */
+      header .inner {
+        background-color: lightblue;
+        height: 100%;
+      }
+
+      /* LOGO */
+      header .inner .logo {
+        color: white;
+        font-size: 30px;
+      }
+
+      header .inner .menu {
+      }
+
+      header .inner .menu li {
+      }
+
+      /* 미디어 쿼리 작성 768px 이하일 때  */
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="inner">
+        <div class="logo">
+          <i class="fa-solid fa-igloo"></i>
+        </div>
+        <ul class="menu">
+          <li>메뉴1</li>
+          <li>메뉴2</li>
+          <li>메뉴3</li>
+          <li>메뉴4</li>
+        </ul>
+      </div>
+    </header>
+  </body>
+</html>

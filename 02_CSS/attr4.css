@@ -1,0 +1,47 @@
+body{
+    height: 2000px;
+}
+
+.box{
+    display: inline-block;
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+.background {
+    background-color: palegreen;
+    background: red;
+    /* 단축 속성 
+    background: color image repeat position/size; */
+    /* background: linear-gradient(45deg,black, white,orange); */
+    background: linear-gradient(to bottom,black, white,orange);
+}
+
+.background-image{
+    background-image:url('./img/small_img.png') ;
+
+    /* 1. background-repeat */
+    background-repeat: repeat;
+    background-repeat: repeat-y;
+    background-repeat: repeat-x;
+    background-repeat: no-repeat;
+
+    /* 2. background-position */
+    /* center, bottom, left, right, top 의 키워드로 지정 가능 */
+    /* background-position: center top; */
+    /* background-position: 100px 200px; */
+    /* background-position: 100px; */
+    /* background-position: center; */
+
+    /* 3. background-size */
+    /* background-size: 50px;
+    background-size: 90px 50px;
+    background-size: contain; */
+    background-size: cover;
+
+    /* 4. background-attatchment */
+    background-attachment: fixed;
+    background-color: pink;
+
+}

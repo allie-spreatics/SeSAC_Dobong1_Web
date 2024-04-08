@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>계산기</title>
+  </head>
+  <body>
+    <h1>계산기 만들기</h1>
+    <form>
+      <label for="value1">값1:</label>
+      <input type="number" id="value1" /><br />
+      <label for="value2">값2:</label>
+      <input type="number" id="value2" /><br />
+      <label for="operator">연산자: </label>
+      <input type="text" id="operator" /><br />
+      <button type="button" onclick="cal();">계산</button>
+      <button type="button" onclick="resetInput();">초기화</button><br /><br />
+      <label for="result">결과: </label>
+      <input type="text" id="result" disabled="true" />
+      <!-- 
+        disabled 속성은 해당 input을 비활성화 하여, 사용자가 클릭할 수 없게 하는 속성입니다.
+        계산의 결과 값이 사용자에 의해 변경되는 것을 막기 위해 "disabled" 속성을 추가했습니다.
+      -->
+    </form>
+
+    <script>
+
+      // [계산] 버튼 클릭시 cal() 함수가 실행되도록 인라인 방식으로 미리 설정해 두었습니다.
+      function cal() {
+        // 값1, 값2, 연산자 요소들을 선택 -> 값 가져오기
+        let v1 = Number(document.querySelector('#value1').value);
+        let v2 = Number(document.querySelector('#value2').value);
+        let op = document.querySelector('#operator').value;
+
+        console.log(v1, v2, op);
+        let result;
+
+        if (op === '+') {
+            result = v1 + v2;
+        } else if (op === '-') {
+            result = v1 - v2;
+        } else if (op === '*') {
+            result = v1 * v2;
+        } else if (op === '/') {
+            result = v1 / v2;
+        }
+
+        console.log(result);
+        document.getElementById('result').value = result;
+      }
+
+      // [초기화] 버튼 클릭시 resetInput() 함수가 실행되도록 인라인 방식으로 미리 설정해 두었습니다.
+      function resetInput() {
+        document.querySelector('#value1').value = '';
+        document.querySelector('#value2').value = '';
+        document.querySelector('#operator').value = '';
+        document.querySelector('#result').value = '';
+      }
+    </script>
+  </body>
+</html>

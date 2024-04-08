@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: none;
+}
+
+main {
+  .ListContainer {
+    max-width: 1200px;
+    padding: 0 1rem;
+    margin: 50px auto;
+    // border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    section {
+      border-radius: 20px;
+      box-shadow: 0px 0px 6px #aaaa;
+      padding: 32px 3rem 4rem;
+      h2 {
+        text-align: center;
+      }
+      ul {
+        li {
+          margin: 0.5rem 0;
+        }
+      }
+      &.TodoList {
+        // border: 2px dashed papayawhip;
+        // color: pink;
+        width: 48%;
+
+        div {
+          // text-align: center;
+          margin: 2rem 0 1rem;
+          display: flex;
+          justify-content: center;
+          input {
+            margin-right: 0.5rem;
+            font-size: 20px;
+            border: none;
+            outline: none;
+            padding: 0.5rem;
+            &:focus {
+              border-bottom: 1px double green;
+              box-shadow: 0px 0px 2px rgba(84, 101, 84, 0.633);
+              border-radius: 3px;
+            }
+            &::placeholder {
+              color: #bbb;
+            }
+          }
+          > button {
+          }
+        }
+        ul {
+          li {
+            span {
+            }
+            button {
+            }
+          }
+        }
+      }
+      &.DoneList {
+        // border: 2px dashed salmon;
+        // color: coral;
+        width: 48%;
+
+        ul {
+          li {
+          }
+        }
+      }
+    }
+  }
+}
+
+// 648 이하에서
+@media screen and (max-width: 648px) {
+  main {
+    .ListContainer {
+      display: flex;
+      flex-direction: column;
+      section {
+        &.TodoList {
+          width: 100%;
+          h2 {
+          }
+          div {
+            input {
+            }
+            > button {
+            }
+          }
+          ul {
+            li {
+              span {
+              }
+              button {
+              }
+            }
+          }
+        }
+        &.DoneList {
+          width: 100%;
+
+          h2 {
+          }
+          ul {
+            li {
+            }
+          }
+        }
+      }
+    }
+  }
+}

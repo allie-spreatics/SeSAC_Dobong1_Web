@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.5.0.min.js"
+    ></script>
+    <title>내 스케줄</title>
+    <style>
+      td {
+        width: 100px;
+        height: 100px;
+        color: black;
+      }
+      tr > td:first-child,
+      tr > th:first-child {
+        color: red;
+      }
+      tr > td:last-child,
+      tr > th:last-child {
+        color: blue;
+      }
+      td > p:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      날짜 : <input type="text" id="date" readonly /> <br />
+      내용 : <input type="text" id="content" /> <br />
+      <button type="button" onclick="writeSchedule();">작성</button> <br />
+    </div>
+    <div style="font-size: 2em; color: green; text-align: center">
+      2022년 7월
+    </div>
+
+    <br />
+
+    <table align="center" width="500" style="text-align: center">
+      <tr>
+        <th>日</th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        <th>土</th>
+      </tr>
+      <tr>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p>1</p></td>
+        <td><p>2</p></td>
+      </tr>
+
+      <tr>
+        <td><p>3</p></td>
+        <td><p>4</p></td>
+        <td><p>5</p></td>
+        <td><p>6</p></td>
+        <td><p>7</p></td>
+        <td><p>8</p></td>
+        <td><p>9</p></td>
+      </tr>
+      <tr>
+        <td><p>10</p></td>
+        <td><p>11</p></td>
+        <td><p>12</p></td>
+        <td><p>13</p></td>
+        <td><p>14</p></td>
+        <td><p>15</p></td>
+        <td><p>16</p></td>
+      </tr>
+      <tr>
+        <td><p>17</p></td>
+        <td><p>18</p></td>
+        <td><p>19</p></td>
+        <td><p>20</p></td>
+        <td><p>21</p></td>
+        <td><p>22</p></td>
+        <td><p>23</p></td>
+      </tr>
+      <tr>
+        <td><p>24</p></td>
+        <td><p>25</p></td>
+        <td><p>26</p></td>
+        <td><p>27</p></td>
+        <td><p>28</p></td>
+        <td><p>29</p></td>
+        <td><p>30</p></td>
+      </tr>
+      <tr>
+        <td><p>31</p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+      </tr>
+    </table>
+
+    <script>
+        // this를 기억하기 위한 전역변수
+        let target;
+
+        // 날짜 클릭
+        $('td > p').on('click', function() {
+            console.log(this);
+            // 날짜만 가져오려면, this의 text() 이용
+            console.log($(this).text());
+
+            // 날짜 input 선택 
+            $('#date').val($(this).text());
+            // target에 this를 기억해두기
+            target = this;
+        })
+
+        function writeSchedule() {
+            let content = $('#content').val();
+
+            // 요소 추가
+            $(target).parent().append("<span>" + content + "</span><br />");
+
+            // 초기화
+            $('#content').val("");
+            $('#date').val("");
+        }
+    </script>
+  </body>
+</html>

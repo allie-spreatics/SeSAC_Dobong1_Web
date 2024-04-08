@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <input type="text">
+        <button>버튼</button>
+    </div>
+
+    <script>
+        // ready: 돔 트리 생성 완료된 후 실행
+        $(document).ready(function() {
+            $('.container').append('<h2>안녕 ready</h2>');
+        })
+
+        $(function() {
+            $('.container').append('<h2>안녕 ready2</h2>');
+        })
+
+        // click
+        $('button').click(function() {
+            alert('클릭!');
+        })
+
+        $('button').on('click', function() {
+            alert('클릭!2');
+        })
+
+        // mouse over
+        $('button').mouseover(function() {
+            alert('mouse over');
+        })
+
+        // key down
+        $('input').keydown(function(e) {
+            console.log('e :', e);
+            console.log('e.target : ', e.target);
+            console.log('e.key :', e.key);
+            if(e.key == 'Enter') alert('enter 입력!');
+
+            console.log('this :', this);
+
+        })
+    </script>
+</body>
+</html>

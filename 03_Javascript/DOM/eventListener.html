@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+        }
+        .container {
+            width: 100%;
+            height: 1000px;
+            overflow: scroll;
+        }
+        .div1 {
+            background-color: yellowgreen;
+        }
+        .div2 {
+            background-color: violet;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="div1">div1</div>
+        <div class="div2">div2</div>
+    </div>
+    <input type="text">
+
+    <script>
+        let div1 = document.querySelector('.div1');
+        // div1.addEventListener('click', function() {
+        //     console.log('div1에 click 이벤트 발생!!');
+        // })
+
+        div1.addEventListener('click', function(event) {
+            console.log('event.target :', event.target);
+            console.log('div1에 click 이벤트 발생!!');
+        })
+
+        // mouse
+        let div2 = document.querySelector('.div2');
+        div2.addEventListener('mouseover', function() {
+            console.log('div2에 mouseover 이벤트 발생!!');
+            div2.style.backgroundColor = 'red';
+        })
+
+        div2.addEventListener('mouseout', function() {
+            console.log('div2에 mouseout 이벤트 발생!!');
+            div2.style.backgroundColor = 'violet';
+        })
+
+        // focus
+        let input = document.querySelector('input');
+
+        input.addEventListener('focus', function() {
+            console.log('input에 focus 이벤트 발생!!');
+        })
+
+        // keyboard
+        input.addEventListener('keydown', function(e) {
+            console.log('e :', e);
+            console.log('e.target :', e.target);
+            console.log('e.target.value :', e.target.value);
+            console.log('input에 keydown 이벤트 발생!!');
+        })
+
+        // scroll
+        let container = document.querySelector('.container');
+        // scroll 없을 때는 실행X
+        container.addEventListener('scroll', function() {
+            console.log('container에 scroll 이벤트 발생!!');
+        })
+
+        window.addEventListener('scroll', function() {
+            console.log('window에 scroll 이벤트 발생!!');
+        })
+    </script>
+</body>
+</html>

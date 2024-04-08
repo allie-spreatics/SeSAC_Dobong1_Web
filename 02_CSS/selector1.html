@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자1 - 기본선택자</title>
+    <style>
+        * {
+            color: gray;
+        }
+
+        /* 태그 선택자 */
+        li {
+            background-color: aqua;
+            color: blue;
+        }
+
+        h3 {
+            background-color: blue;
+            color: skyblue;
+        }
+
+        span {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        /* 클래스 선택자 */
+        .small {
+            background-color: pink;
+        }
+
+        .big {
+            background-color: orange;
+        }
+
+        /* 아이디 선택자 */
+        .p{
+            background-color: pink;
+        }
+
+        #p {
+            background-color: skyblue;
+        }
+
+        /* 선택자 우선순위 */
+        /* tag < class < id 
+        같은 레벨이라면 뒤에 선언된 스타일 적용
+        */
+        
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="small">쥐</li>
+        <li class="big">소</li>
+        <li class="big">용</li>
+        <li class="small">토끼</li>
+    </ul>
+
+    <h3>올해는 용의 해입니다.</h3>
+    <p id="p" class="p">p tag</p>
+    <span>span tag</span>
+</body>
+</html>

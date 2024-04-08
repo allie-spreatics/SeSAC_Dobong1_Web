@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    메인 페이지입니당
+    <ul>
+      <li><a href="/">홈으로</a></li>
+      <%if(isLogin){%>
+      <li><a href="/logout">로그아웃</a></li>
+      <%}else{%>
+      <li><a href="/login">로그인</a></li>
+      <li><a href="/register">회원가입</a></li>
+      <%}%>
+    </ul>
+    <% if(isLogin){ %>
+    <h2><%= userid %>님 안녕하세요 : &#41;</h2>
+    <% }else{ %>
+    <h2>서비스를 이용하려면 로그인을 해주세요.</h2>
+    <% } %>
+  </body>
+</html>

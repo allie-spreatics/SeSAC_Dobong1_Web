@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>연습문제 결과 페이지</title>
+    <style>
+      span {
+        /* color: coral; */
+        font-weight: 700;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        border: 1px solid #bbb;
+        box-shadow: 0px 0px 5px #c8c8c8c8;
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>결과 확인하기</h1>
+    <h3><span><%=userInfo.name%></span>님 환영합니다.</h3>
+    <ul>
+      <li>성별: <%=userInfo.gender%></li>
+      <li>
+        생년월일: <%=userInfo.year%>/<%=userInfo.month%>/<%=userInfo.date%>
+      </li>
+      <!-- <li>생년월일: 1990/12/12</li> -->
+      <li>관심사:<%=userInfo.favorite%></li>
+    </ul>
+    <%if(addInfo){%>
+    <hr />
+    <h4>다른 태그 작성해보기</h4>
+    <p>
+      좋아하는 색깔:
+      <span class="color"><%=userInfo.color%></span>
+    </p>
+    <p>좋아하는 숫자: <%=userInfo.number%></p>
+    <p>다짐 한마디: <%=userInfo.comment%></p>
+    <%}%>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const color = document.querySelector(".color");
+        console.log(color);
+        color.style.color = "<%= userInfo.color%>";
+      });
+    </script>
+  </body>
+</html>

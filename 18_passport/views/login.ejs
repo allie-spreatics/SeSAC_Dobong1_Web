@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 페이지입니당</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form name="form">
+      <input type="id" name="userid" />
+      <input type="password" name="userpw" />
+      <br />
+      <input type="button" value="로그인하기" onclick="login()" />
+      <a href="/login/auth/naver">네이버로 로그인</a>
+    </form>
+
+    <script>
+      async function login() {
+        const form = document.forms["form"];
+        const loginRes = await axios({
+          data: {
+            inputId: form.userid.value,
+            inputPw: form.userpw.value,
+          },
+          url: "/login",
+          method: "post",
+        });
+
+        const { loginSuccess, message } = loginRes.data;
+        if (loginSuccess) {
+          document.location.href = "/";
+        } else {
+          form.reset();
+          alert(message);
+        }
+      }
+    </script>
+  </body>
+</html>

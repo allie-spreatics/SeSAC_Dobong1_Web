@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>랜덤 색상 생성기</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Create Random Color</h1>
+        <h2>rgb(255, 255, 255)</h2>
+        <button>Create</button>
+    </div>
+    <script>
+        // TODO: 아래 조건을 만족하도록 js 파일을 수정하기
+        // 문제
+        // - [ ] 버튼을 클릭하면 배경 색상이 변경됩니다.
+        //    - 문서 전체의 색상을 변경하려면 어떤 태그의 배경 색이 변해야 될까요?
+        //    - 버튼을 "클릭" 했을 때, 색상이 변경되려면 어떤 이벤트가 필요한가요?
+        // - [ ] 버튼을 클릭했을 때 h2 태그의 색상 값이 변경됩니다.
+        //    - h2 태그의 content(내용)을 변경하려면 어떤 속성값을 변경해야 할까요?
+        // - [ ] 색상을 나타내는 방식에는 헥스 코드(#RRGGBB)와 10진 코드 (R,G,B) 두 가지 방식이 있습니다.
+        //    - 이 프로젝트에서는 10진 코드(r, g, b) 방식을 사용합니다.
+        //    - rgb(r, g, b)에서 red, green, blue 숫자 범위는 0이상 255이하 입니다.
+        //      즉, 각 색상마다 0 ~ 255 사이의 랜덤한 값을 생성해야 합니다.
+
+        const button = document.querySelector('button');
+        const h2 = document.querySelector('h2');
+
+        // 버튼을 "클릭"했을 때
+        button.addEventListener('click', function () {
+            // red, green, blue 숫자 범위는 0이상 255이하 입니다.
+            // 0 <= random < 1
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+
+            const newColor = `rgb(${r}, ${g}, ${b})`;
+            // rgb(red, green, blue) 형태로 문자열을 newColor 변수에 저장하기
+
+            document.body.style.backgroundColor = newColor; // 배경색 변경하기
+            h2.innerText = newColor; // newColor 변수에 저장한 rgb() 컬러 코드를 h2의 내용(content)으로 바꾸기
+        })
+    </script>
+</body>
+
+</html>

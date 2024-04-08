@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>댓글 등록하기</title>
+  </head>
+  <body>
+    <h1>댓글 등록하기</h1>
+    <form>
+      <label for="userid">아이디</label>
+      <input type="text" id="userid" name="userid" />
+      <label for="comment">댓글</label>
+      <input type="text" id="comment" name="comment" />
+      <button type="submit">등록</button>
+    </form>
+    <ul class="comment-list"></ul>
+
+    <script>
+      // TODO: 아래 조건을 만족하도록 js 파일을 수정하기
+      // 문제
+      // - [ ] 아이디 input과 댓글 input을 입력하고 [등록] 버튼을 누르면, 댓글이 추가됩니다.
+      //     - 폼을 "제출"헸을 때에 해당하는 이벤트는 무엇인가요?
+      // - [ ] 아이디 값과 댓글 값을 가져와야 합니다.
+      // - [ ] <li> 태그를 새로 만들고, "아이디 - 댓글내용" 형식이 되도록 설정합니다.
+      // - [ ] <ul class="comment-list"> 태그에 li를 추가합니다.
+      // - [ ] 아이디 input과 댓글 input을 초기화해야 합니다.
+
+    //   버튼 태그 요소 선택해서 click 이벤트 해도 되고
+    //  form 요소 선택해서 submit 이벤트 처리 해도 됩니다 
+
+    const form = document.querySelector('form');
+    const list = document.querySelector('.comment-list');
+
+    // form 요소의 button을 클릭하여 폼을 "제출"했을 때,
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // 폼이 제출되고 새로고침 되는 것을 막음
+
+        // userid 라는 폼 요소에 접근
+        // const userid = document.querySelector('#userid');
+        const userid = document.querySelector('input[name="userid"]');
+        const useridValue = document.querySelector('input[name="userid"]').value;  // 문자열
+        // comment 라는 폼 요소에 접근
+        const comment = document.querySelector('input[name="comment"]');
+
+        const newComment = document.createElement('li'); // li 태그 생성
+        newComment.innerHTML = `<strong>${userid.value}</strong> - ${comment.value}`;
+
+        list.append(newComment); // comment-list 요소에 위에서 만든 li 태그 추가
+
+        // input 초기화
+        userid.value = '';
+        comment.value = '';
+
+        // useridValue = ''; // input 요소의 값에 변화가 X
+    })
+    </script>
+  </body>
+</html>

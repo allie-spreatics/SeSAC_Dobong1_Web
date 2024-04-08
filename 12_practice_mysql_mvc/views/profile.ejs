@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <%- include('include/include', { title: '회원 정보' })%>
+  <body>
+    <h1>회원 정보</h1>
+    <!-- TODO: href 속성값 설정하기 -->
+    <a href="/user">HOME</a>
+    <p>ID 수정 불가능, Password, Name 수정 가능</p>
+
+    <!-- TODO: 각 input의 value 값을 로그인 한 사람의 정보로 채우기 -->
+    <!-- data:{ id: 1, userid: 'allie', name: 'allie', pw: '1234' } -->
+    <form name="form_profile">
+      <label for="userid">ID</label>
+      <input type="hidden" id="id" value="<%=data.id%>" />
+      <!-- readonly: userid는 수정 불가능 (조건임) -->
+      <input
+        id="userid"
+        type="text"
+        name="userid"
+        value="<%=data.userid%>"
+        readonly
+      /><br />
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="pw"
+        value="<%=data.pw%>"
+        required
+      /><br />
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        name="name"
+        value="<%=data.name%>"
+        required
+      /><br />
+      <button type="button" onclick="profileEdit();">Edit</button>
+      <button type="button" onclick="profileDelete();">Delete</button>
+    </form>
+
+    <script>
+      // TODO: [Login] 버튼 클릭시 서버에 회원 정보 수정 요청하기
+      // POST /user/profile/edit
+      function profileEdit() {
+        const form = document.forms["form_profile"];
+        if (!form.checkValidity()) {
+          return form.reportValidity();
+        }
+
+        axios({
+          url: "/user/profile/edit",
+          method: "POST",
+          data: {
+            id: form.id.value, // where 조건으로 사용하기 위해서
+            name: form.name.value, //실제 변경할 데이터
+            pw: form.pw.value,
+          },
+        }).then((res) => {
+          alert("수정 완료 ~~~~");
+        });
+      }
+
+      // TODO: [Login] 버튼 클릭시 서버에 회원 정보 삭제 요청하기
+      // POST /user/profile/delete
+      function profileDelete() {
+        const form = document.forms["form_profile"];
+
+        axios({
+          url: "/user/profile/delete",
+          method: "POST",
+          data: {
+            id: form.id.value,
+          },
+        }).then(() => {
+          // 삭제 alert 띄우기
+          alert("삭제완료");
+
+          // 메인 페이지로 이동
+          document.location.href = "/user";
+        });
+      }
+    </script>
+  </body>
+</html>

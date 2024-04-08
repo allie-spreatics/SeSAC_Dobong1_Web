@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rbg(46, 51, 56);
+}
+
+.login-box {
+  width: 20rem;
+  max-width: 90%;
+  box-shadow: 0 0 10px #0003;
+  border-radius: 10px;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.login-box p {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.login-box .input-group-text {
+  width: 50px;
+}
+
+.login-box .btn {
+  margin-bottom: 20px;
+}

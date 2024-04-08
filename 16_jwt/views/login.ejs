@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 페이지</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form name="login-form">
+      <input type="text" id="id" placeholder="ID를 입력하세요" />
+      <input type="password" id="pw" placeholder="비밀번호를 입력하세요" />
+      <button type="button" onclick="login()">로그인</button>
+    </form>
+
+    <script>
+      // POST, /login
+      async function login() {
+        const form = document.forms["login-form"];
+        const response = await axios({
+          method: "POST",
+          url: "/login",
+          data: {
+            id: form.id.value,
+            pw: form.pw.value,
+          },
+        });
+
+        console.log(response.data);
+        //{result, token}
+        //{result, message}
+
+        const { result, token, message } = response.data;
+        // result: 로그인 성공시 true, 로그인 실패시 false
+        // token: 로그인 성공시 token정보, 로그인 실패시 undefined
+        // message: 로그인 성공시 undefined, 로그인 실패시 "로그인 정보가 ~~"
+        if (result) {
+          // 로그인성공!
+          // 토큰을 저장하는 작업 >> 로컬 스토리지에
+          /* 
+          -- localStorage
+          - 브라우저 내에 영구적으로 {키:값} 쌍으로 데이터 저장
+          - 쿠키와 비슷하게 클라이언트에 저장소가 있음. 문자형 데이터 타입만 저장 가능
+          - 5KB 데이터 저장 가능(쿠키는 4KB)
+          1. 로컬 스토리지에 데이터 저장
+          localStorage.setItem("키이름1",data1); {키이름1:data1}
+          localStorage.setItem("키이름2",data2); {키이름1:data1, 키이름2:data2}
+          localStorage.setItem("키이름3",data3); {키이름1:data1, 키이름2:data2, 키이름3:data3}
+          
+          2. 로컬 스토리지에서 데이터 가져오기
+          localStorage.getItem("키이름2"); >> data2
+
+          3. 로컬 스토리지에서 데이터 하나 지우기
+          lacalStorage.removeItem("키이름2"); {키이름1:data1, 키이름3:data3}
+
+          4. 로컬 스토리지 전체 데이터 삭제
+          localStorage.clear(); {} 
+          */
+
+          // 토큰정보 로컬스토리지에 저장
+          localStorage.setItem("login", token);
+          document.location.href = "/";
+        } else {
+          // 로그인 실패
+          alert(message);
+
+          // input창 비우기
+          // document.location.reload();
+          form.reset();
+        }
+      }
+    </script>
+  </body>
+</html>

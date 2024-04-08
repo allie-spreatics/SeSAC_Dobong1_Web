@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gsap 기본</title>
+
+    <!-- GSAP CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- bootstrap css cdn: 스타일을 편하게 주기 위해서 가져온 것.
+         gsap과 연관되어있는 cdn은 아닙니다! -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <style>
+      .circle {
+        background-color: pink;
+        border: 1px solid #aaa;
+        box-sizing: border-box;
+        width: 100px;
+        height: 100px;
+        border-radius: 40%;
+        margin: auto;
+      }
+      .tl {
+        width: 100px;
+        height: 100px;
+        box-shadow: 1px 1px 10px #aaaaaa50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle circle1"></div>
+
+    <div class="stagger-container d-flex">
+      <div class="stagger circle circle2 bg-danger"></div>
+      <div class="stagger circle circle3 bg-primary"></div>
+      <div class="stagger circle circle4 bg-success"></div>
+    </div>
+
+    <div class="tl bg-info skyblue"></div>
+    <div class="tl bg-secondary gray"></div>
+    <div class="tl bg-warning yellow"></div>
+  </body>
+  <script>
+    /* 
+    Gsap library
+    애니메이션과 관련된 라이브러리 입니다.
+    동적인 페이지를 만들고 싶을 때 사용하면 됩니다.
+    */
+
+    /* 
+    gsap.from >> 은 선택한 요소 .circle1이 
+    내가 정해준 속성으로부터 정상 상태로 변경되는 동작 
+    
+    gsap.to >>> 선택한 요소가 내가 정해준 속성으로 변경되는 동작
+    */
+
+    /* 1. 기본 애니메이션 */
+    //    첫번째 인자에는 애니메이션을 주고 싶은 요소, 선택자를 이용해서 선택
+    gsap.from(".circle1", {
+      // 두번째 인자는 gsap의 정해져있는 속성들을 이용해서
+      // 어떤 애니메이션을 줄건지 설정
+      x: -500, // x축위치 조정(px 단위 생략)
+      yPercent: 100, //y축, percent 단위로 위치 조정
+      duration: 3, //animation-duration
+      backgroundColor: "green", // 배경 색상
+      rotation: 180, //회전 각도
+      scale: 2, // 요소의 크기
+      repeat: 3, // animation을 3회 추가하는 것
+      yoyo: true, // reverse 여부
+      ease: "linear", // ease는 애니메이션 동작, 미리 지정해둔 값 linear, bounc, power1,..
+      //                 animation-timing-function 에 해당하겠죠?
+      //   ease: "bounce.inOut",
+      //   ease: "power1.out",
+    });
+
+    /* 2. 기본 애니메이션, stagger 추가 */
+    // 여러 개 선택
+    const staggerAll = document.querySelectorAll(".stagger");
+    console.log(staggerAll);
+    // from, to의 target 으로는 querySelectorAll로 선택된 배열형태의 여러 요소가 와도 됨
+    gsap.from(staggerAll, {
+      ease: "elastic", //ease 의 한 종류
+      duration: 3,
+      scale: 0.5,
+      // stagger: 초단위,
+      // 여러 요소가 있을 때, 애니메이션이 동시에 동작하지 않고
+      // 1.5초(정해진 초단위) 간격으로 순차적으로 실행됨
+      stagger: 1.5,
+      repeat: -1, // 반복 infinite
+    });
+
+    /* 3. timeline 사용 */
+    // timeline은 연속적인 애니메이션을 만들기 위해서 사용
+    let tl = gsap.timeline();
+
+    // 따로 쓰기
+    /* tl.to(".skyblue", {
+    x: 400,
+    duration: 2,
+  });
+  
+  tl.to(".gray", {
+    x: 500,
+    duration: 2,
+  });
+  
+  tl.to(".yellow", {
+    x: 600,
+    duration: 3,
+  }); */
+
+    // 타임라인에 이어서 쓰기
+    // 동시에 동작하는것이 아니라
+    // skyblue > gray > yellow 순으로 애니메이션 동작
+    tl.to(".skyblue", {
+      x: 400,
+      duration: 2,
+    })
+      .to(".gray", {
+        x: 500,
+        duration: 2,
+      })
+      .to(".yellow", {
+        x: 600,
+        duration: 3,
+      });
+
+    // tl.to(".skyblue", {
+    //   x: 400,
+    //   duration: 2,
+    // })
+    //   .to(
+    //     ".gray",
+    //     {
+    //       x: 500,
+    //       duration: 4,
+    //     },
+    //     "<"
+    //   )
+    //   .to(
+    //     ".yellow",
+    //     {
+    //       x: 600,
+    //       duration: 3,
+    //     },
+    //     "+=5"
+    //   );
+
+    /* 
+    to/from 의 세 번째 매개변수
+    = 같은 타임라인 내부에서 한 번에 동작하는 방법
+      - 2(숫자) : 전체 타임라인에 대해서 ~ 초 뒤에 시작한다는 의미
+              (absolutely)
+      - "<" : 이전 움직임과 동시에 시작
+      - "+=2" : 마지막에 끝난 움직임보다 ~ 초 뒤에 시작하겠다!
+    
+    */
+  </script>
+</html>

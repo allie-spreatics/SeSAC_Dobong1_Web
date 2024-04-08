@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 요소 추가, 삭제</title>
+    <!-- js 파일 분리해서 사용하는 경우 defer 추가해서 dom 요소 로드 후에 실행 -->
+    <script>
+        let ul = document.querySelector('ul'); 
+        console.log(ul); // null
+
+        function createNode() {
+            // let ul = document.querySelector('ul'); 
+            // console.log(ul);
+            let li = document.createElement('li');
+            li.innerText = '새로 추가된 리스트';
+            console.log('li :', li);
+        }
+
+        function appendNode() {
+            let li = document.createElement('li');
+            li.innerText = '새로 추가된 리스트';
+
+            // append() : 요소.append() 선택한 요소의 맨 뒤 자식 요소로 추가
+            let ul = document.querySelector('ul');
+            ul.append(li);
+            ul.append('text');
+        }
+
+        function appendChildNode() {
+            let li = document.createElement('li');
+            li.innerText = '새로 추가된 리스트 append child';
+
+            // appendChild() : 요소.appendChild() 선택한 요소의 맨 뒤 자식 요소로 추가
+            let ul = document.querySelector('ul');
+            ul.appendChild(li);
+            ul.appendChild('text'); // error : appendChild()는 요소노드만 추가 가능
+        }
+
+        function prependNode() {
+            let li = document.createElement('li');
+            li.innerText = '새로 추가된 리스트 prepend child';
+
+            // prepend() : 요소.prepend() 선택한 요소의 맨 앞 자식 요소로 추가
+            let ul = document.querySelector('ul');
+            ul.prepend(li);
+        }
+
+        function beforeNode() {
+            // 기존 노드 앞에 형제 요소로 추가
+            let standard = document.getElementById('li');
+
+            let li = document.createElement('li');
+            li.innerText = 'before';
+            standard.before(li);
+        }
+
+        function afterNode() {
+            // 기존 노드 뒤에 형제 요소로 추가
+            let standard = document.getElementById('li');
+
+            let li = document.createElement('li');
+            li.innerText = 'after';
+            standard.after(li);
+        }
+
+        function removeNode() {
+            // 내가 선택한 요소 삭제
+            let standard = document.getElementById('li');
+            standard.remove();
+        }
+
+        function removeChildNode() {
+            let ul = document.querySelector('ul');
+            let standard = document.getElementById('li');
+
+            console.log(ul.removeChild(standard));
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li id="li">3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <button onclick="createNode()">createNode</button>
+    <button onclick="appendNode()">appendNode</button>
+    <button onclick="appendChildNode()">appendChildNode</button>
+    <button onclick="prependNode()">prependNode</button>
+    <button onclick="beforeNode()">before</button>
+    <button onclick="afterNode()">after</button>
+    <button onclick="removeNode()">removeNode</button>
+    <button onclick="removeChildNode()">removeChildNode</button>
+</body>
+</html>

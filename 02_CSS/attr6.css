@@ -1,0 +1,94 @@
+.img-box {
+    background-color: #9494ed;
+    width: 400px;
+    height: 250px;
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 1px solid gold;
+    transition-duration: 10s;
+
+}
+
+.img-box img:hover{
+
+    /* 1. skew()
+    - 원하는 각도만큼 요소를 기울임
+    - x, y축 나눠서 속성 부여 가능
+        skewX()
+        skewY()
+    */
+    transform: skewX(30deg);
+    transform: skewY(30deg);
+    transform: skew(30deg);
+
+    /* 2. scale()
+    - 크기 조절 함수 (확대, 축소)
+        1보다 크면 확대, 1보다 작은 소수는 축소
+    */
+
+    transform: scaleX(1.5);
+    transform: scaleY(0.5);
+    transform: scale(2,0.5);
+
+    /* 3. translate 
+    - 이동
+    - translateX(): X축으로 이동
+    - translateY(): Y축으로 이동
+    - translate(): x축, y축 기준으로 이동
+    */
+    transform: translateX(50px);
+    transform: translateY(50px);
+    transform: translate(-50px, 10px);
+
+    /* 4. rotate
+    - 회전 (단위는 deg)
+    - rotateX(), rotateY(): 각각 X축과 Y축 기준으로 회전
+    - rotate(): 시계방향으로 회전
+    */
+
+    transform: rotate(90deg);
+    transform: perspective(500px) rotateX(45deg);
+    transform: perspective(400px) rotateY(180deg);
+    backface-visibility: visible;
+    /* backface-visibility: hidden; */
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-color: black;
+}
+
+.box1:hover{
+    background-color: pink;
+    height: 120px;
+    width: 120px;
+
+    transition-duration: 1s;
+    /* transition-delay: 1s; */
+    /* transition-property: height; */
+    transition-timing-function: ease;
+}
+
+.box2:hover{
+    /* transition 단축속성 */
+    /* transition: property duration(필수) function delay */
+    background-color: aqua;
+    transform: translateX(100px) scaleX(2);
+
+    /* transition: transform 0.5s linear 2s; */
+    /* transition:  2s 0.5s; */
+    transition: 2s;
+}
+
+.box3:hover{
+    transition: .6s;
+    /* opacity: 0; */
+    /* visibility: hidden; */
+    display: none;
+}
