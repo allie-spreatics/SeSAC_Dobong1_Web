@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web socket 사용해보기</title>
+  </head>
+  <body>
+    <h4>채팅방</h4>
+    <h5>채팅 내용</h5>
+    <ul></ul>
+
+    <h5>채팅 입력</h5>
+    <form id="chat">
+      <label>이름: <input type="text" id="name" /></label>
+      <label>내용: <input type="text" id="msg" /></label>
+      <button>채팅보내기</button>
+    </form>
+    <script>
+      const socket = new WebSocket("ws://localhost:8080");
+      /*
+      WebSocket 객체의 이벤트
+      - open: 웹소켓 서버에 연결되었을 때
+      - message: 서버에서 메세지를 받았을 때(메세지를 주고받을 때)
+      - error: 에러상황
+      - close: 웹소켓 연결 종료
+      */
+      socket.addEventListener("open", () => {
+        console.log("서버와 연결되었어요.");
+        // socket.send("채팅방에 입장!");
+      });
+
+      socket.addEventListener("message", (event) => {
+        console.log("서버에서 받은 메세지:: ", event.data); // 서버에서 준 메세지
+
+        // string to object 로 파싱
+        const data = JSON.parse(event.data);
+        console.log(data); // obj
+        // data={
+        //   msg: msg.value,
+        //   name: name.value,
+        // };
+        const li = document.createElement("li");
+        // 이름: 내용
+        li.textContent = `${data.name}: ${data.msg}`;
+        ul.append(li);
+      });
+
+      socket.addEventListener("close", () => {
+        console.log("서버와 연결이 종료됨");
+      });
+
+      socket.addEventListener("error", (event) => {
+        console.log("error", event.console.error);
+      });
+
+      //   ----------------
+      //   form 이벤트
+      const chatForm = document.getElementById("chat");
+      const ul = document.querySelector("ul");
+
+      chatForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // 새로고침 막기
+        const msg = chatForm.querySelector("#msg");
+        const name = chatForm.querySelector("#name");
+        const chatData = {
+          msg: msg.value,
+          name: name.value,
+        };
+
+        const chatDataStr = JSON.stringify(chatData);
+        // object > string(json)
+
+        // console.log(chatDataStr);
+        socket.send(chatDataStr);
+
+        // 빈값 만들기
+        msg.value = "";
+        name.value = "";
+      });
+    </script>
+  </body>
+</html>
