@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+      .container {
+        background-color: #9bbbd4;
+        height: 500px;
+        margin-top: 20px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* [HEADER] */
+      .container header {
+        width: 100%;
+        box-shadow: 0px 2px 2px #7a7a7a20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-basis: 10%;
+      }
+
+      /* [SECTION] */
+      .container section {
+        padding: 16px;
+        overflow-y: auto;
+        flex-basis: 80%;
+      }
+      /* 스크롤 모양 변경 */
+      .container section::-webkit-scrollbar {
+        width: 4px;
+      }
+      .container section::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 10px;
+        padding: 1px;
+        margin: 1px;
+      }
+      .container section::-webkit-scrollbar-track {
+        padding: 1px;
+        background-color: #ccc;
+        border-radius: 10px;
+        box-shadow: inset 0px 0px 2px white;
+      }
+
+      /* section-말풍선 */
+      /* 
+      <div class="speech me">
+          <span class="msg-box">내 메세지</span>
+        </div>
+        <div class="speech other">
+          <span>socket.id</span>
+          <span>다른 사람이 보낸 채팅 내용</span>
+        </div>
+      */
+
+      .container .speech .msg-box {
+        display: inline-block;
+        box-shadow: 1px 1px 5px #7a7a7a;
+        border-radius: 8px;
+        padding: 0.3rem;
+        margin: 0.5rem 0;
+        max-width: 60%;
+      }
+
+      .container .speech.me {
+        text-align: right;
+      }
+
+      .container .speech.other {
+        position: relative;
+        margin: 10px 0;
+      }
+      .container .speech.other .nickname {
+        font-size: 10px;
+        position: absolute;
+        top: -8px;
+      }
+
+      .container .speech.me .msg-box {
+        background-color: #fef01b;
+      }
+      .container .speech.other .msg-box {
+        background-color: #ffffff;
+      }
+      /* [MSG_FORM] */
+      .container .msg-form {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 16px;
+        flex-basis: 10%;
+      }
+
+      .container .msg-form input {
+        flex-basis: 80%;
+        border: none;
+        outline: none;
+        border-radius: 100px;
+        padding: 8px 16px;
+      }
+      .container .msg-form input:focus + button {
+        background-color: #fef01b;
+      }
+
+      .container .msg-form button {
+        flex-basis: 15%;
+        border: none;
+      }
+
+      /* 입장알림 CSS */
+      .container section .notice {
+        width: 80%;
+        background-color: #fff5;
+        border-radius: 50px;
+        text-align: center;
+        padding: 2px;
+        color: #4449;
+        margin: 8px auto;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>코코아톡🐛</header>
+      <section>
+        <!-- <div class="speech me">
+          <span class="msg-box">내 메세지</span>
+        </div>
+        <div class="speech other">
+          <span class="nickname">socket.id</span>
+          <span class="msg-box">다른 사람이 보낸 채팅 내용</span>
+        </div>
+
+        <div class="notice">~~~님이 입장하셨습니다.</div> -->
+      </section>
+      <form class="msg-form" id="msg-form">
+        <input type="text" placeholder="메세지 입력" />
+        <button>전송</button>
+      </form>
+    </div>
+    <script>
+      const socket = io();
+      const chatContainer = document.querySelector(
+        ".container section"
+      );
+      const chatForm = document.querySelector("#msg-form");
+
+      /* [실습3] 입장-2 */
+      socket.on("notice", (noticeMsg) => {
+        console.log(noticeMsg);
+        const div = document.createElement("div");
+        div.textContent = noticeMsg;
+        div.classList.add("notice");
+        chatContainer.append(div);
+      });
+
+      /* [실습4] 채팅 주고받기 */
+      chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = chatForm.querySelector("input");
+        if (input.value.trim() === "") return;
+
+        // [4-1] 폼이 제출되었을 때 메세지를 서버로 전달
+        socket.emit("send", input.value);
+        input.value = "";
+      });
+
+      // [4-3] 모든 메세지를 전달받고
+      // 나와 다른 사람의 메세지를 구분
+      socket.on("message", (msgInfo) => {
+        console.log("보낸사람의 id", msgInfo.id);
+        console.log("내 id", socket.id);
+        console.log("보낸 메세지", msgInfo.message);
+
+        const div = document.createElement("div");
+        const span = document.createElement("span"); //내용에 대한
+        span.classList.add("msg-box");
+        span.textContent = msgInfo.message; //메세지 넣기
+        if (socket.id === msgInfo.id) {
+          // 내가 보낸 메세지
+          div.classList.add("speech", "me");
+        } else {
+          // 남이 보낸 메세지
+          div.classList.add("speech", "other");
+          const nickname = document.createElement("span"); // 닉네임에 대한
+          nickname.classList.add("nickname");
+          nickname.textContent = msgInfo.id;
+          div.prepend(nickname);
+        }
+        div.append(span);
+        chatContainer.append(div);
+        // section이 길어지면 스크롤 맨 밑으로
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      });
+    </script>
+  </body>
+</html>
