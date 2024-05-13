@@ -13,7 +13,7 @@ public class Conditional {
             System.out.println("홀수");
         }
 
-        // if ~ else if
+        // if ~ else if()
         if (number % 3 == 0) {
             System.out.println("3의 배수");
         } else if (number % 5 == 0) {
