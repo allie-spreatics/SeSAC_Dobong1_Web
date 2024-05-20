@@ -1,11 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c40a8810-8897-4527-8a55-baf32b5206bd" name="Changes" comment="" />
+    <list default="true" id="c40a8810-8897-4527-8a55-baf32b5206bd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/a_access_modifier/pack6/A.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/a_access_modifier/pack6/B.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/a_access_modifier/pack7/C.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/a_access_modifier/pack7/D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/d_inheritance/Animal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/d_inheritance/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/d_inheritance/DogEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/d_inheritance/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/d_inheritance/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/d_inheritance/StudentEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/e_abstract/Circle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/e_abstract/Shape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/e_abstract/ShapeEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/e_abstract/Square.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/e_abstract/abstract.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/f_interface/Audio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/f_interface/RemoteControl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/f_interface/RemoteControlEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/f_interface/Television.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/f_interface/interfaceEx/InterfaceEx01.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java-lecture/src/_05_class/f_interface/interfaceEx/InterfaceEx02.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -13,30 +48,110 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2gMH2tihjLiEZ9NrFQ642oRSIV0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.DogEx.executor": "Run",
+    "Application.InterfaceEx01.executor": "Run",
+    "Application.RemoteControlEx.executor": "Run",
+    "Application.ShapeEx.executor": "Run",
+    "Application.StudentEx.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/교육생8/Desktop/lec_web/50_JAVA/java-lecture"
+    "last_opened_file_path": "C:/Users/교육생8/Desktop/github/SSAC_dobong/34_JAVA"
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-17.0.9-corretto-17.0.9-4caba194b151-107bc6b7" />
-      </set>
-    </attachedChunks>
+  <component name="RunManager" selected="Application.InterfaceEx01">
+    <configuration name="DogEx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="_05_class.d_inheritance.DogEx" />
+      <module name="34_JAVA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="_05_class.d_inheritance.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InterfaceEx01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="_05_class.f_interface.interfaceEx.InterfaceEx01" />
+      <module name="34_JAVA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="_05_class.f_interface.interfaceEx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RemoteControlEx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="_05_class.f_interface.RemoteControlEx" />
+      <module name="34_JAVA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="_05_class.f_interface.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShapeEx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="_05_class.e_abstract.ShapeEx" />
+      <module name="34_JAVA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="_05_class.e_abstract.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentEx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="_05_class.d_inheritance.StudentEx" />
+      <module name="34_JAVA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="_05_class.d_inheritance.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.InterfaceEx01" />
+        <item itemvalue="Application.RemoteControlEx" />
+        <item itemvalue="Application.ShapeEx" />
+        <item itemvalue="Application.DogEx" />
+        <item itemvalue="Application.StudentEx" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -48,5 +163,16 @@
       <updated>1715500323685</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/java-lecture/src/_05_class/a_access_modifier/pack7/C.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
