@@ -37,5 +37,8 @@
 
   <div th:text="${hello.getMsg()}"></div>
 
+
+  <div th:if="${age} < 20" th:text="${age} + '세는 미성년자입니다'" style="color:blue;"></div>
+  <div th:unless="${age} < 20" style="color:green;">???????</div>
 </body>
 </html>

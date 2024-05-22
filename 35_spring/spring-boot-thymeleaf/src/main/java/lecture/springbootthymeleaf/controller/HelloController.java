@@ -1,9 +1,13 @@
 package lecture.springbootthymeleaf.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,15 +33,42 @@ public class HelloController {
     }
 
     @GetMapping("/prac/1")
-    public String prac01() {
-        return "";
+    public String prac01(Model model) {
+        model.addAttribute("age", 15);
+        return "prac01";
     }
 
     @GetMapping("/prac/2")
-    public String prac02() {
-        return "";
+    public String prac02(Model model) {
+        ArrayList<Person> persons = new ArrayList<Person>();
+        persons.add(new Person("kim", 10));
+        persons.add(new Person("lee", 20));
+
+        model.addAttribute("persons", persons);
+        return "prac02";
     }
-    
+
+
+    @AllArgsConstructor
+    @Getter
+    class Person {
+        private String name;
+        private int age;
+
+        // public Person(String name, int age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        //
+        // public String getName() {
+        //     return name;
+        // }
+        //
+        // public int getAge() {
+        //     return age;
+        // }
+    }
+
     class Hello {
         private String msg = "hi";
 
