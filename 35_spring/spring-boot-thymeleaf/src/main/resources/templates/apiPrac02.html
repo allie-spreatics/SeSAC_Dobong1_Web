@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form action="/api/prac/2" method="post">
+    <input type="text" name="name" placeholder="이름"/>
+    <br/>
+    <input type="radio" name="gender" value="남자"/> 남자
+    <input type="radio" name="gender" value="여자"/> 여자
+    <br/>
+    <select name="birthYear">
+      <option th:each="year:${birthYear}" th:text="${year}" th:value="${year}"></option>
+    </select>
+    <select name="birthMonth">
+      <option th:each="month:${birthMonth}" th:text="${month}" th:value="${month}"></option>
+    </select>
+    <select name="birthDate">
+      <option th:each="date:${birthDate}" th:text="${date}" th:value="${date}"></option>
+    </select>
+    <br/>
+    <input type="checkbox" name="interests" value="여행"/> 여행
+    <input type="checkbox" name="interests" value="패션"/> 패션
+    <input type="checkbox" name="interests" value="음식"/> 음식
+    <button>회원가입</button>
+  </form>
+</body>
+</html>

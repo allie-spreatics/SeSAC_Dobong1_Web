@@ -1,8 +1,12 @@
 package lecture.springbootthymeleaf.controller;
 
+import lecture.springbootthymeleaf.dto.UserDTO;
+import lecture.springbootthymeleaf.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.IntStream;
 
 
 // localhost:8080/api/~~~~~~
@@ -84,5 +88,109 @@ public class ApiController {
     @ResponseBody
     public String getRes4() {
         return "hello";
+    }
+
+    // GET ~~~~:8080/api/prac/2
+    @GetMapping("/prac/2")
+    public String prac2View(Model model) {
+        int[] years = IntStream.rangeClosed(1970, 2024).toArray();
+        int[] months = IntStream.rangeClosed(1, 12).toArray();
+        int[] dates = IntStream.rangeClosed(1, 31).toArray();
+
+        model.addAttribute("birthYear", years);
+        model.addAttribute("birthMonth", months);
+        model.addAttribute("birthDate", dates);
+
+        return "apiPrac02";
+    }
+
+    @PostMapping("/prac/2")
+    public String prac2Res(
+            @RequestParam String name,
+            @RequestParam String gender,
+            @RequestParam int birthYear,
+            @RequestParam int birthMonth,
+            @RequestParam int birthDate,
+            @RequestParam String[] interests,
+            Model model) {
+
+        String interest = String.join(",", interests);
+
+        model.addAttribute("name", name);
+        model.addAttribute("gender", gender);
+        model.addAttribute("birthYear", birthYear);
+        model.addAttribute("birthMonth", birthMonth);
+        model.addAttribute("birthDate", birthDate);
+        model.addAttribute("interests", interest);
+
+        return "apiPrac02Res";
+    }
+
+    @PostMapping("/res4")
+    public String postRes4(
+            @ModelAttribute UserDTO user,
+            Model model) {
+        // @ModelAttribute
+        // 객체로 데이터를 전송받게끔 도와줌. 해당 객체의 setter를 이용해서 데이터를 매핑시킴
+        // url에 있는 데이터를 매핑
+        // 생략 가능
+        model.addAttribute("name", user.getName());
+        model.addAttribute("age", user.getAge());
+        return "res";
+    }
+
+    @PostMapping("/res5")
+    public String postRes5(
+            @ModelAttribute UserVO user,
+            Model model) {
+        model.addAttribute("name", user.getName());
+        model.addAttribute("age", user.getAge());
+        return "res";
+    }
+
+    @GetMapping("/res6")
+    public String postRes6(
+            @ModelAttribute UserDTO user,
+            Model model) {
+        model.addAttribute("name", user.getName());
+        model.addAttribute("age", user.getAge());
+        return "res";
+    }
+
+    // --------------------- @RequsetBody ------------------
+    @GetMapping("/res7")
+    public String postRes7(
+            @RequestBody UserDTO user,
+            Model model) {
+        // 오류가 남. Why? body 자체가 없음. get 요청이기 때문에
+        model.addAttribute("name", user.getName());
+        model.addAttribute("age", user.getAge());
+        return "res";
+    }
+
+    @PostMapping("/res8")
+    public String postRes8(
+            @RequestBody UserDTO user,
+            Model model) {
+        // 오류가 남. Why? 일반 폼 전송의 Content-Type은 application/x-www-form-urlencoded 이기 때문에
+        // @RequestBody는 application/json 형태의 Content-Type을 매핑시킬 수 있음.
+        model.addAttribute("name", user.getName());
+        model.addAttribute("age", user.getAge());
+        return "res";
+    }  // vo로 테스트 해봐도 둘 다 오류 날 예정
+
+
+    @PostMapping("/res9")
+    @ResponseBody
+    public String postRes9(@RequestBody UserDTO user) {
+        return user.getName() + "님 환영합니다.";
+    }
+
+    @PostMapping("/res10")
+    @ResponseBody
+    public String postRes10(@RequestBody UserVO user) {
+        // @RequestBody 은 dto 객체의 setter를 이용해서 매핑시키는 게 아닌,
+        // RequestBody 자체적으로 가지고 있는 메소드로 매핑을 시킴.
+        return user.getName() + "님 환영합니다.";
     }
 }

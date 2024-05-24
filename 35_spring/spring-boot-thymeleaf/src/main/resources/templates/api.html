@@ -6,6 +6,8 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <!--  Axios CDN-->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <h3>get 전송</h3>
@@ -27,5 +29,82 @@
     나이: <input type="number" name="age">
     <button type="submit">전송</button>
   </form>
+
+  <h3>post 전송 (DTO 객체)</h3>
+  <form action="/api/res4" method="post">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="submit">전송</button>
+  </form>
+
+  <h3>post 전송 (VO 객체)</h3>
+  <form action="/api/res5" method="post">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="submit">전송</button>
+  </form>
+
+  <h3>get 전송 (DTO 객체)</h3>
+  <form action="/api/res6" method="get">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="submit">전송</button>
+  </form>
+
+  <h3>get 전송 (DTO 객체, @RequestBody)</h3>
+  <form action="/api/res7" method="get">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="submit">전송</button>
+  </form>
+
+  <h3>post 전송 (DTO 객체, @RequestBody)</h3>
+  <form action="/api/res8" method="post">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="submit">전송</button>
+  </form>
+
+
+  <h3>post 동적 폼 전송 (DTO 객체, @RequestBody)</h3>
+  <form action="/api/res9" method="post" id="form_res9">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="button" onclick="postRes9()">전송</button>
+  </form>
+
+  <h3>post 동적 폼 전송 (VO 객체, @RequestBody)</h3>
+  <form action="/api/res10" method="post" id="form_res10">
+    이름: <input type="text" name="name"/>
+    <br/>
+    나이: <input type="number" name="age">
+    <button type="button" onclick="postRes10()">전송</button>
+  </form>
+
+  <script>
+    function postRes9() {
+      const form = document.getElementById("form_res9");
+      const data = {
+        name: form.name.value,
+        age: form.age.value
+      }
+      axios.post("/api/res9", data).then((res) => console.log(res.data))
+    }
+
+     function postRes10() {
+      const form = document.getElementById("form_res10");
+      const data = {
+        name: form.name.value,
+        age: form.age.value
+      }
+      axios.post("/api/res10", data).then((res) => console.log(res.data))
+    }
+  </script>
 </body>
 </html>
