@@ -1,6 +1,7 @@
 package lecture.spring_boot_mybatis.service;
 
 import lecture.spring_boot_mybatis.domain.User;
+import lecture.spring_boot_mybatis.dto.UserCreateDTO;
 import lecture.spring_boot_mybatis.dto.UserDTO;
 import lecture.spring_boot_mybatis.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,19 @@ public class UserService {
         }
 
         return users;
+    }
+
+    public void insertUser(UserCreateDTO user) {
+        userMapper.insertUser(user);
+    }
+
+    public void updateUser(int id, UserCreateDTO user) {
+        User updateUser = new User();
+
+        updateUser.setId(id);
+        updateUser.setName(user.getName());
+        updateUser.setNickname(user.getNickname());
+
+        userMapper.updateUser(updateUser);
     }
 }
