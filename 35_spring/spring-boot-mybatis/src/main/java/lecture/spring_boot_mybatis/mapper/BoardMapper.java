@@ -11,4 +11,8 @@ public interface BoardMapper {
     List<Board> getBoardsAll();
 
     void insertBoard(BoardCreateDTO board);
+
+    void updateBoard(Board board);
+
+    void deleteBoard(int id);
 }

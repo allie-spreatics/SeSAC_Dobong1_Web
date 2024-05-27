@@ -32,8 +32,8 @@
       <td th:text="${board.getTitle()}"></td>
       <td th:text="${board.getWriter()}"></td>
       <td th:text="${board.getRegistered()}"></td>
-      <td> <button >수정</button> </td>
-      <td> <button >삭제</button> </td>
+      <td> <button type="button" th:onclick="patchBoard([[${board.getId()}]])">수정</button> </td>
+      <td> <button type="button" th:onclick="deleteBoard([[${board.getId()}]])">삭제</button> </td>
     </tr>
   </table>
 
@@ -46,6 +46,32 @@
         writer: form.writer.value,
       }
       axios.post("/board", data).then((res)=>{
+        if(res.data.result) {
+          window.location.reload();
+        } else {
+          alert("에러 발생");
+        }
+      })
+    }
+
+    function patchBoard( id ){
+      const form = document.getElementById("form_board");
+      const data = {
+        title: form.title.value,
+        content: form.content.value,
+        writer: form.writer.value,
+      }
+
+      axios.patch(`/board/${id}`, data).then((res)=>{
+        if(res.data.result) {
+          window.location.reload();
+        } else {
+          alert("에러 발생");
+        }
+      })
+    }
+    function deleteBoard( id ){
+      axios.delete(`/board/${id}`).then((res)=>{
         if(res.data.result) {
           window.location.reload();
         } else {

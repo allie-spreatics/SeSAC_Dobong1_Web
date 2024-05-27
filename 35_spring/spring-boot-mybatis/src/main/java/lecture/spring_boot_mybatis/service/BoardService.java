@@ -44,7 +44,21 @@ public class BoardService {
         return boards;
     }
 
-    public void insertBoard(BoardCreateDTO board) {
+    public void insertBoard( BoardCreateDTO board) {
         boardMapper.insertBoard(board);
+    }
+
+    public void updateBoard(int id, BoardCreateDTO board){
+        Board updateBoard = Board.builder()
+                .id(id)
+                .title(board.getTitle())
+                .content(board.getContent())
+                .writer(board.getWriter())
+                .build();
+        boardMapper.updateBoard(updateBoard);
+    }
+
+    public void deleteBoard(int id){
+        boardMapper.deleteBoard(id);
     }
 }

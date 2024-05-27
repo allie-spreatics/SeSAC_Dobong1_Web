@@ -8,4 +8,12 @@
     <insert id="insertBoard" parameterType="map">
         INSERT INTO board(title, content, writer) VALUES(#{title}, #{content}, #{writer})
     </insert>
+
+    <update id="updateBoard" parameterType="map">
+        UPDATE board SET title=#{title}, content=#{content}, writer=#{writer} WHERE id=#{id}
+    </update>
+
+    <delete id="deleteBoard" parameterType="Integer">
+        DELETE FROM board WHERE id=#{id}
+    </delete>
 </mapper>
