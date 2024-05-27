@@ -19,4 +19,6 @@ public interface UserMapper {
     void insertUser(UserCreateDTO user);
 
     void updateUser(User user);
+
+    void deleteUser(int id);
 }

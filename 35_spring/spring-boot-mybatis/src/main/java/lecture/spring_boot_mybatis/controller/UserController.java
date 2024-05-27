@@ -3,6 +3,7 @@ package lecture.spring_boot_mybatis.controller;
 import lecture.spring_boot_mybatis.dto.UserCreateDTO;
 import lecture.spring_boot_mybatis.dto.UserDTO;
 import lecture.spring_boot_mybatis.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
     @Autowired
     private UserService userService;
@@ -49,6 +51,8 @@ public class UserController {
             userService.updateUser(id, user);
             result.put("result", true);
         } catch (Exception e) {
+            // System.out.println("patch error {}" + e.getMessage());
+            log.error("patch error {}", e.getMessage());
             result.put("result", false);
         }
 
@@ -57,11 +61,13 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @ResponseBody
-    public Map<String, Boolean> deleteUser() {
+    public Map<String, Boolean> deleteUser(
+            @PathVariable int id
+    ) {
         Map<String, Boolean> result = new HashMap<String, Boolean>();
 
         try {
-            // ???????????
+            userService.deleteUser(id);
             result.put("result", true);
         } catch (Exception e) {
             result.put("result", false);

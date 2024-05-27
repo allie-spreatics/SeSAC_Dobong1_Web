@@ -40,9 +40,13 @@ public class UserService {
         User updateUser = new User();
 
         updateUser.setId(id);
-        updateUser.setName(user.getName());
+        updateUser.setNickname(user.getName());
         updateUser.setNickname(user.getNickname());
 
         userMapper.updateUser(updateUser);
+    }
+
+    public  void deleteUser(int id) {
+        userMapper.deleteUser(id);
     }
 }

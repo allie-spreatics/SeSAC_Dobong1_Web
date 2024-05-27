@@ -10,4 +10,7 @@
     <update id="updateUser" parameterType="map">
         UPDATE user SET name=#{name}, nickname=#{nickname} WHERE id=#{id}
     </update>
+    <delete id="deleteUser" parameterType="Integer">
+        DELETE FROM user WHERE id=#{id}
+    </delete>
 </mapper>

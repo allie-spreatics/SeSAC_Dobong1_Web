@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <form id="form_board">
+    <input type="text" name="title" placeholder="제목"/>
+    <input type="text" name="content" placeholder="내용"/>
+    <input type="text" name="writer" placeholder="작성자"/>
+    <button type="button" onclick="insertBoard()">작성</button>
+  </form>
+  <br />
+  <table>
+    <tr>
+      <th>No.</th>
+      <th>ID</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>작성일</th>
+      <th>수정</th>
+      <th>삭제</th>
+    </tr>
+    <tr th:each="board:${boards}">
+      <td th:text="${board.getNo()}"></td>
+      <td th:text="${board.getId()}"></td>
+      <td th:text="${board.getTitle()}"></td>
+      <td th:text="${board.getWriter()}"></td>
+      <td th:text="${board.getRegistered()}"></td>
+      <td> <button >수정</button> </td>
+      <td> <button >삭제</button> </td>
+    </tr>
+  </table>
+
+  <script>
+    function insertBoard() {
+      const form = document.getElementById("form_board");
+      const data = {
+        title: form.title.value,
+        content: form.content.value,
+        writer: form.writer.value,
+      }
+      axios.post("/board", data).then((res)=>{
+        if(res.data.result) {
+          window.location.reload();
+        } else {
+          alert("에러 발생");
+        }
+      })
+    }
+  </script>
+</body>
+</html>
