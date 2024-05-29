@@ -19,7 +19,8 @@ public class UserService {
     }
 
     public List<UserEntity> getUsersByName(String name) {
-        return userRepository.findByName(name);
+        // return userRepository.findByName(name);
+        return userRepository.findByNameCustom(name);
     }
 
     public UserEntity getUserById(int id) {
