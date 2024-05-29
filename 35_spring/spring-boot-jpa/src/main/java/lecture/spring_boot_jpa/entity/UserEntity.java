@@ -1,7 +1,12 @@
 package lecture.spring_boot_jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.List;
 
 @Entity // 해당 클래스가 Entity임을 명시. 기본 생성자를 필요로 함.
 @Table(name = "user") // user라는 테이블과 해당 클래스를 매핑
@@ -20,4 +25,8 @@ public class UserEntity {
 
     @Column(name = "nickname", nullable = false, length = 20)
     private String nickname;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference // User 와 TODO 사이의 순환참조가 발생하는 것을 방지
+    private List<TodoEntity> todos;
 }
